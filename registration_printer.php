@@ -9,7 +9,7 @@
 		<script src="public/js/bootstrap.js"></script>
 		<script src="public/js/registration_printer.js"></script>
 	</head>
-	<body>
+	<body>    
 		<div class="header" id="non-printable">
 			<img id="headlogo" src="public/images/head.png">
 		</div>
