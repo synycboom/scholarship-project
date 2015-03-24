@@ -10,16 +10,19 @@
 		<script src="public/js/registration_printer.js"></script>
 	</head>
 	<body>
+		<div class="header" id="non-printable">
+			<img id="headlogo" src="public/images/head.png">
+		</div>
 		<div class="container" id="non-printable">
 			<div class="row">
 				<div class="col-md-12">
-					<h2 class="b">เอกสารจะมีจำนวนทั้งหมด 2 ชุด โปรดคลิกปุ่ม "print" ด้านล่าง</h2>
+					<h2 class="b">พิมพ์เอกสารทั้งหมด</h2>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-md-12">
-					<button id = "printButton">Print</button>
+					<button id = "printButton" class="btn btn-warning-primary center">Print</button>
 				</div>
 			</div>
 			
@@ -163,12 +166,12 @@
 			  		</div>
 				</div>
 				<div class="col-xs-4">
-					<div id="surname" style="margin-top:-44.7em; margin-left:2em;">
+					<div id="surname" style="margin-top:-44.7em; margin-left:4.5em;">
 				  		<?= $studentID ?>
 				  	</div>
 				</div>
 				<div class="col-xs-2">
-					<div id="surname" style="margin-top:-44.7em; margin-left:-4em;">
+					<div id="surname" style="margin-top:-44.7em; margin-left:-2em;">
 				  		<?= $year ?>
 				  	</div>
 				</div>
@@ -205,7 +208,7 @@
   				</div>
   				<div class="col-xs-3" style="margin-left:-6em;">
   					<div class="box"></div>
-  					<p style="margin-top:-17px;margin-left:17px;">แยกกันอยู๋</p>
+  					<p style="margin-top:-17px;margin-left:17px;">แยกกันอยู่</p>
   				</div>
   				<div class="col-xs-3" style="margin-left:-6em;" >
   					<div class="box"></div>
@@ -265,7 +268,7 @@
   					<div class="box"></div>
   					<p style="margin-top:-17px;margin-left:17px;">อยู่กับมารดา</p>
   				</div>
-  				<div class="col-xs-3" style="margin-left:-6em;" >
+  				<div class="col-xs-3" style="margin-left:-5em;" >
   					<div class="box"></div>
   					<p style="margin-top:-17px;margin-left:17px;">อยู่กับผู้อุปการะ</p>
   				</div>
@@ -470,7 +473,7 @@
 	  			</div>
   				<div class="col-xs-6" style="margin-left:-6em;">
 	  				<div class="box"></div>
-	  				<p style="margin-top:-17px;margin-left:17px;">ใช้จ่ายจากเงินกุ้ยืมฯ และเงินจากทางบ้านบางส่วน</p>
+	  				<p style="margin-top:-17px;margin-left:17px;">ใช้จ่ายจากเงินกู้ยืมฯ และเงินจากทางบ้านบางส่วน</p>
   				</div>
 			</div>
 
