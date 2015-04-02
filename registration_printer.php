@@ -2,47 +2,46 @@
 	date_default_timezone_set("Asia/Bangkok");
 	require "public/db/dbConnect.php";
 	extract($_POST);
-	$firstnameErr = $lastnameErr = $studentIDErr = $yearErr = $GPAErr = $departmentErr= "";
 	$validFirstname = $validLastname = $validStudentID = $validYear = $validGPA = $validDepartment ="";
 	$invalid = FALSE;
 	//form validation 
-	if(!empty($firstname)){
+	if(!empty($firstname) && preg_match("/^([ก-๙]){1,}$/", $firstname)){
 		$validFirstname = $firstname;
 	}
 	else{
-		//$firstnameErr = "First name is required";
+		setcookie("firstnameErr", "First name is not valid", time() + (86400 * 30), "/"); 
 		$invalid = TRUE;
 	}
 
-	if(!empty($lastname)){
+	if(!empty($lastname) && preg_match("/^([ก-๙]){1,}$/", $lastname)){
 		$validLastname = $lastname;
 	}
 	else{
-		//$lastnameErr = "Last name is required";
+		setcookie("lastnameErr", "Last name is not valid", time() + (86400 * 30), "/"); 
 		$invalid = TRUE;
 	}
 
-	if(!empty($studentID)){
+	if(!empty($studentID) && preg_match("/^([0-9]){10}$/", $studentID) ){
 		$validStudentID = $studentID;
 	}
 	else{
-		//$studentIDErr = "Student ID is required";
+		setcookie("studentIDErr", "Student ID is not valid", time() + (86400 * 30), "/"); 
 		$invalid = TRUE;
 	}
 
-	if(!empty($year)){
+	if(!empty($year) && preg_match("/^[1-4]$/", $year)){
 		$validYear = $year;
 	}
 	else{
-		//$yearErr = "Year is required";
+		setcookie("yearErr", "Year is required", time() + (86400 * 30), "/"); 
 		$invalid = TRUE;
 	}
 
-	if(!empty($GPA)){
+	if(!empty($GPA) && preg_match("/^((?:[0-3]\.[0-9]{2})|4.00)$/", $GPA)){
 		$validGPA = $GPA;
 	}
 	else{
-		//$GPAErr = "GPA is required";
+		setcookie("GPAErr", "GPA is not valid", time() + (86400 * 30), "/"); 
 		$invalid = TRUE;
 	}
 
@@ -50,19 +49,21 @@
 		$validDepartment = $department;
 	}
 	else{
-		//$departmentErr = "Department is required";
+		setcookie("departmentErr", "Department is required", time() + (86400 * 30), "/"); 
 		$invalid = TRUE;
 	}
 
 	if($invalid){
+		setcookie("invalidRegister", "yes", time() + (86400 * 30), "/"); 
 		header("Location: ".url()."/scholarship");
 	}
 	else{
-		$academicYear = date("Y");
+		$academicYear = date("Y")+543;
 		$datas = $database->select("registration", "*", [
 			"AND" => [
 				"firstname" => $validFirstname,
 				"lastname"  => $validLastname,
+				"studentID"  => $validStudentID,
 				"academicYear" => $academicYear
 			]
 		]);
@@ -81,10 +82,9 @@
 		}
 		//there is the duplicate data,so dont add it to db and redirect
 		else{
-			$registeredFirstname = $data[0]["firstname"];
-			$registeredLastName = $data[0]["lastname"];
-			header("Location: ".url()."/scholarship?registeredFirstname=".$registeredFirstname.
-				"&registeredLastname=".$registeredLastName);
+			setcookie("registeredErr", "ชื่อ และ นามสกุลนี้ ได้ทำการลงทะเบียนภายในปีการศึกษานี้แล้ว", time() + (86400 * 30), "/");
+			setcookie("invalidRegister", "yes", time() + (86400 * 30), "/");
+			header("Location: ".url()."/scholarship");
 		}
 
 	}
@@ -97,6 +97,12 @@
 	    $_SERVER['SERVER_NAME']
 	  );
 	}
+
+	function thainumDigit($num){  
+	    return str_replace(array( '0' , '1' , '2' , '3' , '4' , '5' , '6' ,'7' , '8' , '9' ),  
+	    array( "o" , "๑" , "๒" , "๓" , "๔" , "๕" , "๖" , "๗" , "๘" , "๙" ),  
+	    $num);  
+	};
 
 	
 ?>
@@ -131,7 +137,7 @@
 			<div class="row">
 				<div class="col-xs-1"><img src="/scholarship/public/images/engr_logo.png"class="logo"></div>
 				<div class="col-xs-8 title">
-					<h4 class="b">ใบสมัครขอรับทุนการศึกษาคณะวิศวกรรมศาสตร์</br>มหาวิทยาลัยธรรมศาสตร์ ปีการศึกษา <under class ="underline">๒๕๕......<under></h4>
+					<h4 class="b">ใบสมัครขอรับทุนการศึกษาคณะวิศวกรรมศาสตร์</br>มหาวิทยาลัยธรรมศาสตร์ ปีการศึกษา <under class ="underline"><?= thainumDigit($academicYear)?><under></h4>
 				</div>
 				<div class="col-xs-2 pictureBox"></br>ติดรูปถ่าย </br></br>2 นิ้ว</div>
 			</div>
@@ -245,6 +251,7 @@
 			</div>
 
 			<!-- variable for printing section -->
+				
 			<div class="row">
 				<div class="col-xs-6">
 					<div id="name" style="margin-top:-51.1em; margin-left:14em;">

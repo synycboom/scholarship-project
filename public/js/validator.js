@@ -26,11 +26,13 @@
  * ======================================================================== */
 
 
+
 +function ($) {
   'use strict';
 
   // VALIDATOR CLASS DEFINITION
   // ==========================
+  
 
   var Validator = function (element, options) {
     this.$element = $(element)
@@ -222,9 +224,30 @@
     return !!this.$element.find(':input[required]:enabled').filter(fieldIncomplete).length
   }
 
+  //insert my own code to pop up modal before send data
   Validator.prototype.onSubmit = function (e) {
     this.validate()
-    if (this.isIncomplete() || this.hasErrors()) e.preventDefault()
+    if (this.isIncomplete() || this.hasErrors()) {
+      e.preventDefault();
+    }
+    else{
+      e.preventDefault();
+      var firstname = $('#firstname').val();
+      var lastname = $('#lastname').val();
+      var department = $('select[name=department]').val();
+      var studentID = $('#studentID').val();
+      var year = $('select[name=year]').val();
+      var GPA = $('#GPA').val();
+      //insert data to modal body
+      $('#firstnameCheck').html("ชื่อ: "+firstname);
+      $('#lastnameCheck').html("นามสกุล: "+lastname);
+      $('#departmentCheck').html("ภาควิชา: "+department);
+      $('#studentIDCheck').html("รหัสนักศึกษา: "+studentID);
+      $('#yearCheck').html("ชั้นปี: "+year);
+      $('#GPACheck').html("เกรดเฉลี่ย: "+GPA);
+
+      $('#confirmationModal').modal('show'); 
+    }
   }
 
   Validator.prototype.toggleSubmit = function () {
