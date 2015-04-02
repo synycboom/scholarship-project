@@ -1,5 +1,104 @@
 <?php 
+	date_default_timezone_set("Asia/Bangkok");
+	require "public/db/dbConnect.php";
 	extract($_POST);
+	$firstnameErr = $lastnameErr = $studentIDErr = $yearErr = $GPAErr = $departmentErr= "";
+	$validFirstname = $validLastname = $validStudentID = $validYear = $validGPA = $validDepartment ="";
+	$invalid = FALSE;
+	//form validation 
+	if(!empty($firstname)){
+		$validFirstname = $firstname;
+	}
+	else{
+		//$firstnameErr = "First name is required";
+		$invalid = TRUE;
+	}
+
+	if(!empty($lastname)){
+		$validLastname = $lastname;
+	}
+	else{
+		//$lastnameErr = "Last name is required";
+		$invalid = TRUE;
+	}
+
+	if(!empty($studentID)){
+		$validStudentID = $studentID;
+	}
+	else{
+		//$studentIDErr = "Student ID is required";
+		$invalid = TRUE;
+	}
+
+	if(!empty($year)){
+		$validYear = $year;
+	}
+	else{
+		//$yearErr = "Year is required";
+		$invalid = TRUE;
+	}
+
+	if(!empty($GPA)){
+		$validGPA = $GPA;
+	}
+	else{
+		//$GPAErr = "GPA is required";
+		$invalid = TRUE;
+	}
+
+	if(!empty($department)){
+		$validDepartment = $department;
+	}
+	else{
+		//$departmentErr = "Department is required";
+		$invalid = TRUE;
+	}
+
+	if($invalid){
+		header("Location: ".url()."/scholarship");
+	}
+	else{
+		$academicYear = date("Y");
+		$datas = $database->select("registration", "*", [
+			"AND" => [
+				"firstname" => $validFirstname,
+				"lastname"  => $validLastname,
+				"academicYear" => $academicYear
+			]
+		]);
+		//if there is no this data in database,add new record
+		if(empty($datas)){
+			$database->insert("registration", [
+				"firstname" => "$validFirstname",
+				"lastname" => "$validLastname",
+				"studentID" => "$validStudentID",
+				"year" => "$validYear" ,
+				"department" => "$validDepartment",
+				"GPA" => "$validGPA",
+				"academicYear" => "$academicYear",
+				"pass" => "0"
+			]);
+		}
+		//there is the duplicate data,so dont add it to db and redirect
+		else{
+			$registeredFirstname = $data[0]["firstname"];
+			$registeredLastName = $data[0]["lastname"];
+			header("Location: ".url()."/scholarship?registeredFirstname=".$registeredFirstname.
+				"&registeredLastname=".$registeredLastName);
+		}
+
+	}
+    
+
+    function url(){
+	  return sprintf(
+	    "%s://%s",
+	    isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+	    $_SERVER['SERVER_NAME']
+	  );
+	}
+
+	
 ?>
 <html>
 	<head>
@@ -30,7 +129,7 @@
 
 		<div class="container" id="printable" style="margin-top:2em;">
 			<div class="row">
-				<div class="col-xs-1"><img src="/scholarship/public/images/engr_logo.jpg"class="logo"></div>
+				<div class="col-xs-1"><img src="/scholarship/public/images/engr_logo.png"class="logo"></div>
 				<div class="col-xs-8 title">
 					<h4 class="b">ใบสมัครขอรับทุนการศึกษาคณะวิศวกรรมศาสตร์</br>มหาวิทยาลัยธรรมศาสตร์ ปีการศึกษา <under class ="underline">๒๕๕......<under></h4>
 				</div>
@@ -149,12 +248,12 @@
 			<div class="row">
 				<div class="col-xs-6">
 					<div id="name" style="margin-top:-51.1em; margin-left:14em;">
-			  			<?= $firstname ?>
+			  			<?= $validFirstname ?>
 			  		</div>
 				</div>
 				<div class="col-xs-6">
 					<div id="surname" style="margin-top:-51.1em; margin-left:5.2em;">
-				  		<?= $lastname ?>
+				  		<?= $validLastname ?>
 				  	</div>
 				</div>
 			</div>
@@ -162,24 +261,24 @@
 			<div class="row">
 				<div class="col-xs-6">
 					<div id="name" style="margin-top:-44.7em; margin-left:11.2em;">
-			  			<?= $department ?>
+			  			<?= $validDepartment ?>
 			  		</div>
 				</div>
 				<div class="col-xs-4">
 					<div id="surname" style="margin-top:-44.7em; margin-left:4.5em;">
-				  		<?= $studentID ?>
+				  		<?= $validStudentID ?>
 				  	</div>
 				</div>
 				<div class="col-xs-2">
 					<div id="surname" style="margin-top:-44.7em; margin-left:-2em;">
-				  		<?= $year ?>
+				  		<?= $validYear ?>
 				  	</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-2">
 					<div id="surname" style="margin-top:-42.6em; margin-left:25em;">
-				  		<?= $GPA ?>
+				  		<?= $validGPA ?>
 				  	</div>
 				</div>
 			</div>

@@ -4,12 +4,14 @@
 		<link rel="stylesheet" type="text/css" href="public/css/index.css" >
 		<script src="public/js/jquery-1.11.1.min.js"></script>
 		<script src="public/js/bootstrap.js"></script>
-		<script src="public/js/validator.js"></script>
+	    <script src="public/js/validator.js"></script>
 	</head>
 	<body>
 		<div class="header">
 			<img id="logo" src="public/images/head.png">
 		</div>
+		<h2 style="text-align:center;font-family: 'THSarabunNew', sans-serif; ">
+			ใบสมัครทุนการศึกษาคณะวิศวกรรมศาสตร์</h2>
 
 		<div class="container-fluid bg">
 			<div class="row">
