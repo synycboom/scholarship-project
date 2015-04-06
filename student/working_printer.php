@@ -1,10 +1,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="public/css/working_printer.css" >
-		<script src="public/js/jquery-1.11.1.min.js"></script>
-		<script src="public/js/bootstrap.js"></script>
-		<script src="public/js/working_printer.js"></script>
+		<link rel="stylesheet" type="text/css" href="../public/css/working_printer.css" >
+		<script src="../public/js/jquery-1.11.1.min.js"></script>
+		<script src="../public/js/bootstrap.js"></script>
+		<script src="../public/js/working_printer.js"></script>
 	</head>
 	<body>
 		<div class="container" style="margin-top:1em;">
@@ -36,7 +36,7 @@
 			</div>
 
 			</div class="row">
-				<table border="1px" style="margin-left:4em;">
+				<table border="1px" style="margin-left:4em; margin-top:-0.5em;">
 					<thead>
 					    <tr>
 					    	<th>วัน/เดือน/ปี</th>
@@ -257,10 +257,10 @@
 				
 			</div>
 			
-			</div class="row">
+			</div class="row"  >
 				<div class="col-xs-5"></div>
 				<div class="col-xs-7">
-					<p class="license">ผู้ควบคุม..................................................................ตัวบรรจง</br>
+					<p class="license" style="margin-top:0.1em">ผู้ควบคุม..................................................................ตัวบรรจง</br>
 					ตำแหน่ง&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;อาจารย์/เจ้าหน้าที่ (ผู้ควบคุม)</p>
 				</div>
 			</div>

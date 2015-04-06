@@ -1,6 +1,6 @@
 $('document').ready(function(){
-	$('#validationErrorModal').hide(); 
-	$('#confirmationModal').hide();
+	// $('#validationErrorModal').hide(); 
+	// $('#confirmationModal').hide();
 	
 	//to see the code that open a modal,go and see it in validator.js -> Validator.prototype.onSubmit
 	//after when validator has renderred modal,and user is sure and press submit btn 

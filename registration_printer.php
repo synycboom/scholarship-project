@@ -5,7 +5,7 @@
 	$validFirstname = $validLastname = $validStudentID = $validYear = $validGPA = $validDepartment ="";
 	$invalid = FALSE;
 	//form validation 
-	if(!empty($firstname) && preg_match("/^([ก-๙]){1,}$/", $firstname)){
+	if(!empty($firstname) && (preg_match("/^([ก-๙]){1,}$/", $firstname) || preg_match("/เ*/", $firstname) ) ){
 		$validFirstname = $firstname;
 	}
 	else{
@@ -13,7 +13,7 @@
 		$invalid = TRUE;
 	}
 
-	if(!empty($lastname) && preg_match("/^([ก-๙]){1,}$/", $lastname)){
+	if(!empty($lastname) && (preg_match("/^([ก-๙]){1,}$/", $lastname) || preg_match("/เ*/", $lastname) ) ){
 		$validLastname = $lastname;
 	}
 	else{
@@ -77,7 +77,7 @@
 				"department" => "$validDepartment",
 				"GPA" => "$validGPA",
 				"academicYear" => "$academicYear",
-				"pass" => "0"
+				"status" => "0"
 			]);
 		}
 		//there is the duplicate data,so dont add it to db and redirect
