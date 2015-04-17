@@ -1,6 +1,17 @@
 <?php
+	//###########################  this is in index of admin ##################################
+	//###########################  this is in index of admin ##################################
+	//###########################  this is in index of admin ##################################
+	//###########################  this is in index of admin ##################################
+	//###########################  this is in index of admin ##################################
+	//###########################  this is in index of admin ##################################
+	//###########################  this is in index of admin ##################################
+	//###########################  this is in index of admin ##################################
+	//###########################  this is in index of admin ##################################
+	//###########################  this is in index of admin ##################################
 	session_start();
 	require "../public/db/dbConnect.php";
+
 ?>
 <html>
 <head>
@@ -36,7 +47,7 @@
 	        	</a>
 	        </li>
 	         <li style="font-family: 'Lobster', cursive; font-size:20px;">
-	         	<a>Administrator<span class="sr-only">(current)</span>
+	         	<a href="#">Administrator<span class="sr-only">(current)</span>
 	         	</a>
 	         </li>
 	        
@@ -44,9 +55,9 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="#" id="registeredStudent">Registered Students</a></li>
+	            <li><a href="registered_student.php" id="registeredStudent">Registered Students</a></li>
 	            <li class="divider"></li>
-	            <li><a href="#" id="authorizedStudent">Authorized Students</a></li>
+	            <li><a href="authorized_student.php" id="authorizedStudent">Authorized Students</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -61,12 +72,6 @@
 		        </div>
 	      	</form>
 
-	        <form class="navbar-form navbar-right" role="search" >
-	          <div class="form-group">
-	            <input type="text" class="form-control" placeholder="Search">
-	          </div>
-	          <button type="submit" class="btn btn-default">Submit</button>
-	        </form>
 	      <?php } else { ?>
 	      	<div class="navbar-form navbar-right">
 		        <button class="btn btn-warning" data-toggle="modal" data-target="#loginModal">Login</button>
@@ -132,29 +137,7 @@
 		</div>
 		<?php } ?>
 
-		<!-- more-detail modal -->
-		<div class="modal fade" id="more-detail-modal">
-
-			  <div class="modal-dialog modal-sm">
-
-			    <div class="modal-content">
-
-			      <div class="modal-header">
-
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title">more details</h4>
-
-			      </div>
-
-			      <div class="modal-body">
-			   		testestestes
-			      </div>
-
-			    </div>
-
-			  </div>
-
-		</div>
+		
 
 
 

@@ -1,6 +1,27 @@
 <?php
 	session_start();
 	require "../public/db/dbConnect.php";
+	extract($_GET);
+	$datas = $database->select("activity", "*", ["studentID" => $_SESSION["student_logged_in"]]);
+
+	if(isset($deleteID)&&isset($_SESSION["student_logged_in"])){
+		$database->delete("activity", [
+			"AND" => [
+				"studentID" => $_SESSION["student_logged_in"],
+				"id" => $deleteID
+			]
+		]);
+
+		header("Location: ".url()."/scholarship/student/view_all_activity.php");
+	}
+
+	function url(){
+	  return sprintf(
+	    "%s://%s",
+	    isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+	    $_SERVER['SERVER_NAME']
+	  );
+	}
 ?>
 <html>
 <head>
@@ -36,7 +57,7 @@
 	        	</a>
 	        </li>
 	         <li style="font-family: 'Lobster', cursive; font-size:20px;">
-	         	<a>Student<span class="sr-only">(current)</span>
+	         	<a href="../student/">Student<span class="sr-only">(current)</span>
 	         	</a>
 	         </li>
 	        
@@ -44,10 +65,10 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="#" id="view-activity-form">Activity Form</a></li>
+	            <li><a href="activity_form.php" id="view-activity-form">Activity Form</a></li>
 	            <li><a href="#" id="view-all-activity">View All Activities</a></li>
 	            <li class="divider"></li>
-	            <li><a href="#" id="account-management">Account Management</a></li>
+	            <li><a href="change_password.php" id="changePassword">Change Password</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -62,12 +83,6 @@
 		        </div>
 	      	</form>
 
-	        <!-- <form class="navbar-form navbar-right" role="search" >
-	          <div class="form-group">
-	            <input type="text" class="form-control" placeholder="Search">
-	          </div>
-	          <button type="submit" class="btn btn-default">Submit</button>
-	        </form> -->
 	      <?php } else { ?>
 	      	<div class="navbar-form navbar-right">
 		        <button class="btn btn-warning" data-toggle="modal" data-target="#loginModal">Login</button>
@@ -120,95 +135,83 @@
 		</div>
 
 		<?php if(isset($_SESSION['student_logged_in'])){ ?>
-		<div class="container" id="welcome">
-			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		<?= "<h1>Welcome ".$_SESSION['name']."</h1>"?>
-		  	    <h4>To add new activity information. Please click Manage-> Activity Form</h4>
-		  	    <h4>To manage your account. Please click Manage-> Account Management</h4>
-			</div>
-		</div>
 
 		<div class="container" id="activity-form">
-			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		
-		  		<div>
-					<h1>บันทึกเวลาการทำงาน</h1>
-				</div>
+			<?php 
+				echo "<table class='table table-hover' style='margin-top:6em;text-align:center;'>\n";
+					echo "<thead>\n";
+						echo "<tr>\n";
+							echo "<th class='info' style='text-align:center'>Date</th>\n";
+							echo "<th class='info' style='text-align:center'>Start</th>\n";
+							echo "<th class='info' style='text-align:center'>End</th>\n";
+							echo "<th class='info' style='text-align:center'>Total</th>\n";
+							echo "<th class='danger' style='text-align:center'>Delete</th>\n";
+						echo "</tr>\n";
 
-				<div>
-					<form class="form-inline">
-						<div class="form-group">
-						    <label for="date" >Date</label>
-						    <div class="row">
-								 <div class="col-xs-2">
-								 	<input type="date" 
-								 	class="form-control" 
-								 	name="date" 
-								 	id="date" 
-								 	required>
-								 </div>
-								 <div class="help-block with-errors"></div>
-							</div>
-						 </div>
 
-						 <div class="form-group">
-						    <label for="start-time">Start Time</label>
-						    <div class="row">
-								 <div class="col-xs-2">
-								 	<input type="time" 
-								 	class="form-control" 
-								 	name="start-time" 
-								 	id="start-time" 
-								 	required>
-								 </div>
-								 <div class="help-block with-errors"></div>
-							</div>
-						 </div>
+					echo "</thead>\n";
+					
+					echo "<tbody>\n";
+					foreach($datas as $data){
 
-						 <div class="form-group">
-						    <label for="end-time">End Time</label>
-						    <div class="row">
-								 <div class="col-xs-2">
-								 	<input type="time" 
-								 	class="form-control" 
-								 	name="end-time" 
-								 	id="end-time" 
-								 	required>
-								 </div>
-								 <div class="help-block with-errors"></div>
-							</div>
-						 </div>
+						echo "<tr>\n";
+							echo "<td>\n";
+								echo $data["date"];
+							echo "</td>\n";
 
-						 <div class="form-group">
-						    <div class=" col-sm-10" style="margin-top:1.7em">
-						      <button 
-						      id="save" 
-						      class="btn btn-warning">save</button>
-						    </div>
-						 </div>
+							echo "<td>\n";
+								echo $data["start-time"];
+							echo "</td>\n";
 
-					</form>
-					<p id = "validation-error"></p>
-				</div>
-				
+							echo "<td>\n";
+								echo $data["end-time"];
+							echo "</td>\n";
 
-			</div>
+							echo "<td>\n";
+								echo $data["total"];
+							echo "</td>\n";
+
+							echo "<td>\n";
+									echo "<button type='button' class='btn btn-danger deleteModal' id='".$data["id"]."'>delete</button>";
+							echo "</td>\n";
+
+						echo "</tr>\n";
+					}
+					echo "</tbody>\n";
+			echo "</table>";
+		?>
+
 		</div>
+			
 
 
-		<?php } else { ?>
-		<div class="container ">
-			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		<h1>Activity and Account management</h1>
-		  		<p>Please log in first</p>
-			</div>
+		<?php } else {
+			header("Location: ".url()."/scholarship/student/");
+		}?>
+
+		<div class="modal fade" id="delete-modal">
+
+		  <div class="modal-dialog modal-sm">
+
+		    <div class="modal-content">
+
+		      <div class="modal-header">
+
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title">Are you sure to delete</h4>
+
+		      </div>
+
+		      <div class="modal-body">
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="cancel"> No </button>
+		        <button type="button" style="float:right"class="btn btn-danger" id="deleteButton">Yes</button>
+		      </div>
+
+		    </div>
+
+		  </div>
+
 		</div>
-		<?php } ?>
-
-
-
-
-		<div class="container" id="table-data"></div>
 
 </body>
 </html>

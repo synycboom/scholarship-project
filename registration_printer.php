@@ -59,6 +59,7 @@
 	}
 	else{
 		$academicYear = date("Y")+543;
+		$hash_password = crypt($validStudentID);
 		$datas = $database->select("registration", "*", [
 			"AND" => [
 				"firstname" => $validFirstname,
@@ -77,7 +78,8 @@
 				"department" => "$validDepartment",
 				"GPA" => "$validGPA",
 				"academicYear" => "$academicYear",
-				"status" => "0"
+				"status" => "0",
+				"password" => $hash_password
 			]);
 		}
 		//there is the duplicate data,so dont add it to db and redirect

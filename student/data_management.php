@@ -6,7 +6,8 @@
 		"studentID" => $_SESSION["student_logged_in"],
 		"date" => $date,
 		"start-time" => $startTime,
-		"end-time" => $endTime
+		"end-time" => $endTime,
+		"total" => $totalTime
 	]);
 	
 ?>
