@@ -63,7 +63,6 @@ $('document').ready(function(){
    		var totalTime = diff(startTime,endTime);
    		var dataString = 'date='+ td + '&startTime=' + startTime + '&endTime='+endTime+"&totalTime="+totalTime; 
    		var date = Date.parse(td) || 0;	
-   		
    		if(startTime>=endTime && date == 0){
    			$('#validation-error-M').text('End time is less than or equal start time. Invalid date!!');
    		}
@@ -79,20 +78,13 @@ $('document').ready(function(){
 		        url: "data_management.php",  
 		        data: dataString,  
 		        success: function(response) { 
-		        	if(response == "ok"){
-		        		$('#validation-error-M').text('added successfully');
-		        		setTimeout(function() {
-		        			location.reload();
-							}, 1200);
-		        	}
-		        	else{
-		        		$('#validation-error-M').text(response);
-		        	}
 		        }  
 		    });  
-
-
-   		}
+   			$('#validation-error-M').text('added successfully');
+   			setTimeout(function() {
+		        			location.reload();
+						}, 1200);
+   			}
     	 return false;
 	});
 
@@ -102,22 +94,22 @@ $('document').ready(function(){
 		var newPassword = $("#newPassword").val();  
 		var reNewPassword = $("#reNewPassword").val();  
 		var dataString = 'currentPassword='+ currentPassword + '&newPassword=' + newPassword + '&reNewPassword='+reNewPassword; 
-		// if(currentPassword=="" || newPassword == "" || reNewPassword == ""){
-		// 	$('#validation-error').show();
-		// 	$('#validation-error').text('some fields are empty');
-		// }
-		// else if( newPassword != reNewPassword){
-		// 	$('#validation-error').show();
-		// 	$('#validation-error').text('New password and Re-New password are not the same');
-		// }
-		// else{
+		if(currentPassword=="" || newPassword == "" || reNewPassword == ""){
+			$('#validation-error').show();
+			$('#validation-error').text('some fields are empty');
+		}
+		else if( newPassword != reNewPassword){
+			$('#validation-error').show();
+			$('#validation-error').text('New password and Re-New password are not the same');
+		}
+		else{
 			$('#validation-error').hide();
 			$.ajax({  
 		        type: "POST",  
 		        url: "authentication.php",  
 		        data: dataString,  
 		        success: function(response) { 
-		        	if(response != "Password is successfully changed"){
+		        	if(response == "Current password is not valid"){
 		        		$('#validation-error').show();
 		        		$('#validation-error').text(response);
 		        	}
@@ -132,7 +124,7 @@ $('document').ready(function(){
 		        }  
 			});  
 	   		
-		// }
+		}
   		return false;
 	});
 	
@@ -142,7 +134,7 @@ $('document').ready(function(){
 	});
 
 	$('#deleteButton').click(function(){
-		window.location.href = "../student/view_all_activity.php?deleteID="+deleteID; 
+		window.location.href = "../../student/view_all_activity.php?deleteID="+deleteID; 
 	});
 
 

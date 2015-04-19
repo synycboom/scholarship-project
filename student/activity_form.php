@@ -56,6 +56,9 @@
 	            <li><a href="view_all_activity.php" id="view-all-activity">View All Activities</a></li>
 	            <li class="divider"></li>
 	            <li><a href="change_password.php" id="changePassword">Change Password</a></li>
+	            <li class="divider"></li>
+	            <li><a href="activity_paper.php" >Get Activity Paper</a></li>
+	            <li><a href="registration_paper.php" >Get Register Paper</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -142,11 +145,14 @@
 						    <label for="date" >Date</label>
 						    <div class="row">
 								 <div class="col-xs-2">
+								 	<?php echo'
 								 	<input type="date" 
 								 	class="form-control" 
+								 	placeholder="'.(date("Y")+543).'/01/21 yyyy/mm/dd"
 								 	name="date" 
 								 	id="date" 
-								 	required>
+								 	required>';
+								 	?>
 								 </div>
 								 <div class="help-block with-errors"></div>
 							</div>
@@ -158,6 +164,7 @@
 								 <div class="col-xs-2">
 								 	<input type="time" 
 								 	class="form-control" 
+								 	placeholder="ex. 13:45"
 								 	name="start-time" 
 								 	id="start-time" 
 								 	required>
@@ -172,6 +179,7 @@
 								 <div class="col-xs-2">
 								 	<input type="time" 
 								 	class="form-control" 
+								 	placeholder="ex. 15:50"
 								 	name="end-time" 
 								 	id="end-time" 
 								 	required>

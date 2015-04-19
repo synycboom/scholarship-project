@@ -56,6 +56,9 @@
 	            <li><a href="view_all_activity.php" id="view-all-activity">View All Activities</a></li>
 	            <li class="divider"></li>
 	            <li><a href="#" id="changePassword">Change Password</a></li>
+	            <li class="divider"></li>
+	            <li><a href="activity_paper.php">Get Activity Paper</a></li>
+	            <li><a href="registration_paper.php">Get Register Paper</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -138,17 +141,17 @@
 							<form class="form" action="" method="post">
 								<div class="form-group">
 								    <label for="currentPassword">Current Password</label>
-								    <input type="text" class="form-control" id="currentPassword">
+								    <input type="password" class="form-control" id="currentPassword">
 								 </div>
 
 								<div class="form-group">
 								    <label for="newPassword">New Password</label>
-								    <input type="text" class="form-control" id="newPassword">
+								    <input type="password" class="form-control" placeholder="8-10 characters. Can be [A-z] and [0-9]" id="newPassword">
 								 </div>
 
 								 <div class="form-group">
 								    <label for="reNewPassword">Re-New Password</label>
-								    <input type="text" class="form-control" id="reNewPassword">
+								    <input type="password" class="form-control" placeholder="8-10 characters. Can be [A-z] and [0-9]" id="reNewPassword">
 								 </div>
 								 <p id = "validation-success" class="alert alert-success" ></p>
 								 <p id = "validation-error" class="alert alert-danger" ></p>

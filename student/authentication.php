@@ -104,23 +104,44 @@
 
 	//reset password
 	if(isset($currentPassword)&&isset($newPassword)&&isset($reNewPassword)){
+		if(empty($newPassword)||empty($currentPassword)||empty($reNewPassword)){
+			echo "Some inputs are empty";
 
-		$pass = $database->select("registration","password",["studentID" => $_SESSION["student_logged_in"]]);
-		if(isset($pass[0])){
-			//is current password verified?
-			if (hash_equals($pass[0], crypt($currentPassword, $pass[0]))){
-				$hash_password = crypt($reNewPassword);
-				$database->update("registration", [
-						"password" => $hash_password],[
-						"studentID" => $_SESSION["student_logged_in"]
-				]);
-				echo "Password is successfully changed";
-			}
-			else{
-				echo "Current password is not valid";
+		}
+		else if($newPassword!=$reNewPassword){
+			echo "The new password are not the same!";
+		}
+		else if(!preg_match("/^([A-Za-z0-9]){8,10}$/", $newPassword)){
+			echo "The password contains some characters that is invalid";
+		}
+		else if(strlen($newPassword)<8 ){
+			echo "The length is less than 8 characters";
+		}
+		else if(strlen($newPassword)>10 ){
+			echo "The length is grater than 10 characters";
+		}
+		
+		else{
+			$pass = $database->select("registration","password",["studentID" => $_SESSION["student_logged_in"]]);
+			if(isset($pass[0])){
+				//is current password verified?
+				if (hash_equals($pass[0], crypt($currentPassword, $pass[0]))){
+					$hash_password = crypt($reNewPassword);
+					$database->update("registration", [
+							"password" => $hash_password],[
+							"studentID" => $_SESSION["student_logged_in"]
+					]);
+					echo "Password is successfully changed";
+				}
+				else{
+					echo "Current password is not valid";
+				}
 			}
 		}
 
+		
+
 	}
+
 	
 ?>

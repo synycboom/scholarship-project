@@ -2,6 +2,10 @@
 	require "../public/db/dbConnect.php";
 	extract($_POST);
 
+	// if(!isset($_SESSION["logged_in"])){
+	// 	header("Location: ".url()."/scholarship/admin/");
+	// }
+
 	if(isset($resetPasswordID)){
 		$studentID = $database->select("registration", "studentID", [
 			"id" => $resetPasswordID
@@ -19,13 +23,21 @@
 
 	//see the total of activity time
 	if(isset($detailID)){
-		$studentID = $database->select("registration", "studentID", [
-			"id" => $detailID
-		]);
+		$studentID = $database->select("registration", 
+			["studentID",
+			 "academicYear"], 
+			["id" => $detailID]
+		);
+
 		$details = $database->select("activity", "total", [
-			"studentID" => $studentID[0]
+			"AND" => [
+				"studentID" => $studentID[0]["studentID"],
+				"academicYear" => $studentID[0]["academicYear"]
+			]
+			
 		]);
-		echo "Total Activity Time: ".AddTime($details);
+		$d_arr = explode(":",AddTime($details));
+		echo "Total Activity Time: ".$d_arr[0]." hr : ".$d_arr[1]." mn";
 	}
 
 	if(isset($setInCompleteID)){
@@ -95,5 +107,13 @@
 
 	    // returns the time already formatted
 	    return sprintf('%02d:%02d', $hours, $minutes);
+	}
+
+	function url(){
+	  return sprintf(
+	    "%s://%s",
+	    isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+	    $_SERVER['SERVER_NAME']
+	  );
 	}
 ?>

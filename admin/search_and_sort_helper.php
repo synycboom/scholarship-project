@@ -3,6 +3,10 @@
 	extract($_POST);
 	extract($_GET);
 
+	if(!isset($_SESSION["logged_in"])){
+		header("Location: ".url()."/scholarship/admin/");
+	}
+
 	$datas = $database->select("registration", "*");
 
 	// clear search history session
@@ -218,4 +222,6 @@
 	    $_SERVER['SERVER_NAME']
 	  );
 	}
+
+	
 ?>

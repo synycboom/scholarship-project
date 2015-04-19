@@ -4,11 +4,20 @@
 	extract($_GET);
 	$datas = $database->select("activity", "*", ["studentID" => $_SESSION["student_logged_in"]]);
 
+	//prevent atk from attemp to delete via url
 	if(isset($deleteID)&&isset($_SESSION["student_logged_in"])){
+		//prevent user from attemp to delete previous academic year data
+		$academicYear = $database->select("registration","academicYear",[
+				"studentID" => $_SESSION["student_logged_in"],
+				"ORDER" => "academicYear DESC"
+
+			]);
+
 		$database->delete("activity", [
 			"AND" => [
 				"studentID" => $_SESSION["student_logged_in"],
-				"id" => $deleteID
+				"id" => $deleteID,
+				"academicYear" => $academicYear[0]
 			]
 		]);
 
@@ -22,6 +31,9 @@
 	    $_SERVER['SERVER_NAME']
 	  );
 	}
+
+
+	
 ?>
 <html>
 <head>
@@ -69,6 +81,9 @@
 	            <li><a href="#" id="view-all-activity">View All Activities</a></li>
 	            <li class="divider"></li>
 	            <li><a href="change_password.php" id="changePassword">Change Password</a></li>
+	            <li class="divider"></li>
+	            <li><a href="activity_paper.php">Get Activity Paper</a></li>
+	            <li><a href="registration_paper.php">Get Register Paper</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -172,7 +187,10 @@
 							echo "</td>\n";
 
 							echo "<td>\n";
+								if((intval($data["academicYear"])-543) == date("Y"))
 									echo "<button type='button' class='btn btn-danger deleteModal' id='".$data["id"]."'>delete</button>";
+								else
+									echo "<button type='button' class='btn btn-default' disable >delete</button>";
 							echo "</td>\n";
 
 						echo "</tr>\n";

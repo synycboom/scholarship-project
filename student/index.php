@@ -58,6 +58,9 @@
 	            <li><a href="view_all_activity.php" id="view-all-activity">View All Activities</a></li>
 	            <li class="divider"></li>
 	            <li><a href="change_password.php" id="changePassword">Change Password</a></li>
+	            <li class="divider"></li>
+	            <li><a href="activity_paper.php" >Get Activity Paper</a></li>
+	            <li><a href="registration_paper.php" >Get Register Paper</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -72,12 +75,6 @@
 		        </div>
 	      	</form>
 
-	        <!-- <form class="navbar-form navbar-right" role="search" >
-	          <div class="form-group">
-	            <input type="text" class="form-control" placeholder="Search">
-	          </div>
-	          <button type="submit" class="btn btn-default">Submit</button>
-	        </form> -->
 	      <?php } else { ?>
 	      	<div class="navbar-form navbar-right">
 		        <button class="btn btn-warning" data-toggle="modal" data-target="#loginModal">Login</button>

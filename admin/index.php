@@ -124,8 +124,8 @@
 		<div class="container ">
 			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
 		  		<h1>Welcome Administrator</h1>
-		  	    <h4>To see registered students.Please click Manage-> Registered Students</h4>
-		  	    <h4>To see students that is verified.Please click Manage-> Authorized Students</h4>
+		  	    <h4>To see registered students. Please click Manage-> Registered Students</h4>
+		  	    <h4>To see students that is authorized. Please click Manage-> Authorized Students</h4>
 			</div>
 		</div>
 		<?php } else { ?>

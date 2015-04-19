@@ -1,122 +1,84 @@
 @import url('bootstrap.css');
-@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed);
 @import url(fonts/thsarabunnew.css); 
+
+@import url('bootstrap.css');
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed);
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 @import url(http://fonts.googleapis.com/css?family=Droid+Serif:400,700italic);
-body { 
-  font-family: 'THSarabunNew', sans-serif; 
-} 
-
-.header{
-  background-color: #640100;
-  width: 100%;
-}
-.center{
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
-}
-#headlogo{
-  padding: 0.8em;
-  display:block;
-  margin-left:auto;
-  margin-right:auto;
-  width: 60%;
-  height: 30%;
-  box-shadow: inset 0px 0px 18px 0px rgba(0,0,0,0.75);
-}
-.b {
-  font-weight: bold;
-  text-align: center;
-}
-th{
-  font-weight: 100;
-  font-size: 13;
-  padding: 0.5em 1em;
-}
-td{
-  font-weight: 100;
-  font-size: 12;
-  text-align: center;
-  padding: 0.1em 0em;
-}
-caption{
-  font-weight: 100;
-  font-size: 13;
-}
-.map{
-  width: 90%;
-  height: 80%;
-  margin-top: 1em;
-  margin-left: auto;
-  margin-right: auto;
-  background: #fff;
-  border-style: solid;
-  border-width: 1px;
-}
-.box{
-    width: 15px;
-    height: 15px;
-    background: #fff;
-    border-style: solid;
-    border-width: 1px;
-}
-.logo{
-  background: no-repeat;
-  width: 90px;
-  height: 90px;
-  margin-left: 2em;
-}
-.title{
-	margin-left: 4em;
-	margin-top: 2em;
-	text-align: center;
-}
-.underline{
-	text-decoration: underline;
-}
-.pictureBox{
-	margin-left: -1em;
-	width: 90px;
-    height: 100px;
-    background: #fff;
-    border-style: solid;
-    border-width: 1px;
-    font-size: 0.9em;
-    text-align: center;
-}
-.pageNumber{
-	text-align: center;
-  line-height: 85%;
-}
-
-p.small {
-
-    font-size: 14;
-    line-height: 96%;
-}
-
-
- #printable { display: none; }
-
-@media print{
-  section {page-break-after: always;}
-  #non-printable { display: none; }
-  #printable { display: block; }
-   div{
-        page-break-inside: avoid;
-    }
-  .b{ font-weight: bold; font-style: normal; }
-  .i{ font-weight: normal; font-style: italic; }
-  .bi{ font-weight: bold; font-style: italic; }
-}
-
-
 #brand{
   width: 3em;
   height: 3em;
   margin-top:-1em;
 }
+
+#upperText p{
+  font-size: 12;
+}
+
+.b {
+  font-weight: bold;
+  text-align: center;
+}
+
+body { 
+  font-family: 'THSarabunNew', sans-serif; 
+
+} 
+.htitle{
+  text-align: center;
+}
+
+#total{
+  font-size: 12;
+  text-align: left;
+  padding-left: 0.7em;
+}
+.pageNumber{
+	text-align: center;
+	margin-top: 4em;
+}
+.box{
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-style: solid;
+  border-width: 2px;
+}
+.checkbox-text{
+  font-weight: 100;
+  font-size: 12;
+  margin-top: -1.2em;
+  margin-left: 1.8em;
+}
+.license{
+  font-weight: 100;
+  font-size: 12;
+  margin-top: 3em;
+
+}
+
+
+
+th{
+  font-weight: 100;
+  font-size: 11;
+  padding: 0.5em 1.5em;
+}
+td{
+  font-size: 10;
+  text-align: center;
+  padding: 0px 0em;
+}
+ 
+#printable { 
+  display: none; 
+  font-size: 13;
+}
+@media print{
+  #non-printable { display: none; }
+  #printable { display: block; }
+}
+
 
 
 .navbar-default {
