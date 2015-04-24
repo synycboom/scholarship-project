@@ -51,11 +51,15 @@
 	          			Registered Students</a></li>
 		            <li class="divider"></li>
 		            <li><a href="authorized_student.php?clear" id="authorizedStudent">
+		            <li class="divider"></li>
+	            	<li><a href="authorized_paper.php" >Print Authorized Students</a></li>
 		            	Authorized Students</a></li>
 	          	<?php } else {?>
 		            <li><a href="registered_student.php" id="registeredStudent">Registered Students</a></li>
 		            <li class="divider"></li>
 		            <li><a href="#" id="authorizedStudent">Authorized Students</a></li>
+		            <li class="divider"></li>
+	            	<li><a href="authorized_paper.php" >Print Authorized Students</a></li>
 	            <?php } ?>
 	          </ul>
 	        </li>
@@ -157,12 +161,15 @@
 				echo "<thead>\n";
 					echo "<tr>\n";
 						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByStudentID'>Student ID</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByTitle'>Title</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByfirstname'>First Name</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortBylastname'>Last Name</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByDepartment'>Department</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByYear'>Year</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByGPA'>GPA</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByAcademicyear'>Academic Year</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByType'>Type</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByAmount'>Amount</a></th>\n";
 						echo "<th class='info' style='text-align:center'>Detail</th>\n";
 					echo "</tr>\n";
 
@@ -176,6 +183,10 @@
 						echo "<tr>\n";
 							echo "<td>\n";
 								echo $data["studentID"];
+							echo "</td>\n";
+
+							echo "<td>\n";
+								echo $data["title"];
 							echo "</td>\n";
 
 							echo "<td>\n";
@@ -202,6 +213,14 @@
 								echo $data["academicYear"];
 							echo "</td>\n";
 
+							echo "<td>\n";
+								echo $data["scholarship_t"];
+							echo "</td>\n";
+
+							echo "<td>\n";
+								echo $data["amount"];
+							echo "</td>\n";
+						
 							echo "<td>\n";
 								if($data['status'] == 1)
 									echo "<button type='button' class='btn btn-default moreDetail' id='".$data["id"]."'>more details</button>";

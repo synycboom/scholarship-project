@@ -48,9 +48,24 @@
 			ใบสมัครทุนการศึกษาคณะวิศวกรรมศาสตร์</h2>
 
 		<div class="container-fluid bg">
-			<div class="row">
+			<div class="row" style="margin-top:-0.7em">
 				<div class="col-md-12 col-md-offset-3">
 					<form class="form-horizontal" action="registration_printer.php" method="post" data-toggle="validator" id="registerForm">
+						
+						<div class="form-group">
+							<label for="title" class="col-sm-2 control-label">Title</label>
+							<div class="row">
+								 <div class="col-xs-2">
+								 	<select name="title" id="title"  class="form-control">
+										<option value="นาย">นาย</option>
+										<option value="นางสาว">นางสาว</option>
+									</select>
+								 </div>
+							</div>
+							
+						</div>
+
+
 						<div class="form-group">
 						    <label for="firstname" class="col-sm-2 control-label" role="form">First name</label>
 						    <div class="row">
@@ -63,7 +78,7 @@
 								 	required
 								 	pattern="^([ก-๙]){1,}$">
 								 </div>
-								 <div class="help-block with-errors"></div>
+								 <span class="help-block with-errors"></span>
 							</div>
 					  	</div>
 
@@ -80,7 +95,7 @@
 								 	required
 								 	pattern="^([ก-๙]){1,}$">
 								 </div>
-								 <div class="help-block with-errors"></div>
+								 <span class="help-block with-errors"></span>
 							</div>
 						</div>
 
@@ -114,7 +129,7 @@
 								 	required
 								 	pattern="^([0-9]){10}$">
 								 </div>
-								 <div class="help-block with-errors"></div>
+								 <span class="help-block with-errors"></span>
 							</div>
 						</div>
 
@@ -145,7 +160,7 @@
 								 	required
 								 	pattern="^((?:[0-3]\.[0-9]{2})|4.00)$">
 								 </div>
-								 <div class="help-block with-errors"></div>
+								 <span class="help-block with-errors"></span>
 							</div>
 						</div>
 

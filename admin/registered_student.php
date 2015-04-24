@@ -52,10 +52,14 @@
 	          	    <li><a href="registered_student.php?clear" id="registeredStudent">Registered Students</a></li>
 	          		<li class="divider"></li>
 	            	<li><a href="authorized_student.php?clear" id="authorizedStudent">Authorized Students</a></li>
+	            	<li class="divider"></li>
+	            	<li><a href="authorized_paper.php" >Print Authorized Students</a></li>
 	          	<?php } else {?>
 		            <li><a href="#" id="registeredStudent">Registered Students</a></li>
 		            <li class="divider"></li>
 		            <li><a href="authorized_student.php" id="authorizedStudent">Authorized Students</a></li>
+		            <li class="divider"></li>
+	            	<li><a href="authorized_paper.php" >Print Authorized Students</a></li>
 	            <?php } ?>
 	          </ul>
 	        </li>
@@ -139,7 +143,45 @@
 		</div>
 
 		<?php if(isset($_SESSION['logged_in'])){ ?>
+			<div class="modal fade" id="change-status-modal">
 
+				  <div class="modal-dialog modal-md">
+
+				    <div class="modal-content">
+
+				      <div class="modal-header">
+
+				        <button type="button" id = "close-modal"class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title">authorize student</h4>
+
+				      </div>
+
+				      <div class="modal-body" id="detail-body-modal">
+				      	<form action="" method="post" id="loginForm">
+				      		
+							<div class="form-group">
+							    <label for="s_type">scholarship type</label>
+							    <input type="text" class="form-control" id="s_type" placeholder="N/A">
+							</div>
+
+							<div class="form-group">
+							  <label for="amount">amount</label>
+							    <input type="number" class="form-control"  placeholder="N/A" id="amount">
+							</div>
+							<p id ="erM"></p>
+				      	</form>
+				      </div>
+
+				      <div class="modal-footer" id="setPassButton">
+				      	<button class="btn btn-danger setNotPassButton" style="float:left">not pass</button>
+				      	<button class="btn btn-success setPassButton">pass</button>
+				      </div>
+
+				    </div>
+
+				  </div>
+
+			</div>
 		<?php } else { ?>
 		<div class="container ">
 			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
@@ -158,11 +200,14 @@
 					echo "<tr>\n";
 						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByStudentID'>Student ID</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByfirstname'>First Name</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByTitle'>Title</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortBylastname'>Last Name</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByDepartment'>Department</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByYear'>Year</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByGPA'>GPA</a></th>\n";
 						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByAcademicyear'>Academic Year</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByType'>Type</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByAmount'>Amount</a></th>\n";
 						echo "<th class='info' style='text-align:center'>Status</th>\n";
 
 					echo "</tr>\n";
@@ -177,6 +222,11 @@
 						echo "<td>\n";
 							echo $data["studentID"];
 						echo "</td>\n";
+
+						echo "<td>\n";
+							echo $data["title"];
+						echo "</td>\n";
+
 
 						echo "<td>\n";
 							echo $data["firstname"];
@@ -200,6 +250,14 @@
 
 						echo "<td>\n";
 							echo $data["academicYear"];
+						echo "</td>\n";
+
+						echo "<td>\n";
+							echo $data["scholarship_t"];
+						echo "</td>\n";
+
+						echo "<td>\n";
+							echo $data["amount"];
 						echo "</td>\n";
 
 						echo "<td class=".$data["id"].">\n";

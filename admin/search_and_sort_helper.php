@@ -2,7 +2,7 @@
 
 	extract($_POST);
 	extract($_GET);
-
+	
 	if(!isset($_SESSION["logged_in"])){
 		header("Location: ".url()."/scholarship/admin/");
 	}
@@ -43,6 +43,42 @@
 		}
 		
 	}
+	else if(isset($sortByTitle)&&$_SESSION['isSearch']){
+		//order by grater value
+		if($_SESSION['greatOrderFirst']){
+			$datas = $database->select("registration", "*",[
+				$_SESSION['searchType']."[~]" => $_SESSION['searchValue'],
+				"ORDER" => "title DESC"]);
+			$_SESSION['greatOrderFirst'] = false;
+		}
+		//order by less value
+		else{
+			$datas = $database->select("registration", "*",[
+						$_SESSION['searchType']."[~]" => $_SESSION['searchValue'],
+						"ORDER" => "title "]);
+			$_SESSION['greatOrderFirst'] = true;
+		}
+		
+	}
+
+	else if(isset($sortByAmount)&&$_SESSION['isSearch']){
+		//order by grater value
+		if($_SESSION['greatOrderFirst']){
+			$datas = $database->select("registration", "*",[
+				$_SESSION['searchType']."[~]" => $_SESSION['searchValue'],
+				"ORDER" => "amount DESC"]);
+			$_SESSION['greatOrderFirst'] = false;
+		}
+		//order by less value
+		else{
+			$datas = $database->select("registration", "*",[
+						$_SESSION['searchType']."[~]" => $_SESSION['searchValue'],
+						"ORDER" => "amount "]);
+			$_SESSION['greatOrderFirst'] = true;
+		}
+		
+	}
+
 	else if(isset($sortByfirstname)&&$_SESSION['isSearch']){
 		if($_SESSION['greatOrderFirst']){
 			$datas = $database->select("registration", "*",[
@@ -58,6 +94,23 @@
 		}
 
 	}
+	else if(isset($sortByType)&&$_SESSION['isSearch']){
+		if($_SESSION['greatOrderFirst']){
+			$datas = $database->select("registration", "*",[
+				$_SESSION['searchType']."[~]" => $_SESSION['searchValue'],
+				"ORDER" => "scholarship_t DESC"]);
+			$_SESSION['greatOrderFirst'] = false;
+		}
+		else{
+			$datas = $database->select("registration", "*",[
+				$_SESSION['searchType']."[~]" => $_SESSION['searchValue'],
+				"ORDER" => "scholarship_t "]);
+			$_SESSION['greatOrderFirst'] = true;
+		}
+
+	}
+
+	
 	else if(isset($sortBylastname)&&$_SESSION['isSearch']){
 		if($_SESSION['greatOrderFirst']){
 			$datas = $database->select("registration", "*",[
@@ -153,6 +206,41 @@
 		}
 		else{
 			$datas = $database->select("registration", "*",["ORDER" => "firstname "]);
+			$_SESSION['greatOrderFirst'] = true;
+		}
+
+	}
+
+	else if(isset($sortByAmount)&&!$_SESSION['isSearch']){
+		if($_SESSION['greatOrderFirst']){
+			$datas = $database->select("registration", "*",["ORDER" => "amount DESC"]);
+			$_SESSION['greatOrderFirst'] = false;
+		}
+		else{
+			$datas = $database->select("registration", "*",["ORDER" => "amount "]);
+			$_SESSION['greatOrderFirst'] = true;
+		}
+
+	}
+
+	else if(isset($sortByTitle)&&!$_SESSION['isSearch']){
+		if($_SESSION['greatOrderFirst']){
+			$datas = $database->select("registration", "*",["ORDER" => "title DESC"]);
+			$_SESSION['greatOrderFirst'] = false;
+		}
+		else{
+			$datas = $database->select("registration", "*",["ORDER" => "title "]);
+			$_SESSION['greatOrderFirst'] = true;
+		}
+
+	}
+	else if(isset($sortByType)&&!$_SESSION['isSearch']){
+		if($_SESSION['greatOrderFirst']){
+			$datas = $database->select("registration", "*",["ORDER" => "scholarship_t DESC"]);
+			$_SESSION['greatOrderFirst'] = false;
+		}
+		else{
+			$datas = $database->select("registration", "*",["ORDER" => "scholarship_t "]);
 			$_SESSION['greatOrderFirst'] = true;
 		}
 

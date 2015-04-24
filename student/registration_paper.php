@@ -245,8 +245,8 @@
 				
 				<div class="row">
 					<div class="col-xs-6">
-						<div id="name" style="margin-top:-51.1em; margin-left:14em;">
-				  			<?= $datas[0]["firstname"] ?>
+						<div id="name" style="margin-top:-51.1em; margin-left:13.5em;">
+				  			<?= $datas[0]["title"]." ".$datas[0]["firstname"] ?>
 				  		</div>
 					</div>
 					<div class="col-xs-6">

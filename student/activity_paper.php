@@ -253,8 +253,8 @@
 				</div>
 
 
-				<div style="font-size: 12;margin-top: 0.74em;margin-left:16em">
-					<?= $name[0]["firstname"]."  ".$name[0]["lastname"] ?>
+				<div style="font-size: 12;margin-top: 0.74em;margin-left:13em">
+					<?= $name[0]["title"]." ".$name[0]["firstname"]."  &nbsp;".$name[0]["lastname"] ?>
 				</div>
 				<div style="font-size: 12;margin-top: -1.4em;margin-left:37em">
 					<?= $name[0]["studentID"]?>

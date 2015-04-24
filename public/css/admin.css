@@ -20,20 +20,38 @@ body{
 table{
   padding:5em;
 }
+.b {
+  font-weight: bold;
+  text-align: center;
+}
 
+.printTR > th{
+  font-weight: 100;
+  font-size: 12;
+  text-align: center;
+  padding: 0.2em 1em;
+}
 
+.printTR > td{
+  font-weight: 100;
+  font-size: 11;
+  text-align: center;
+  padding: 0.1em 0em;
+}
 
+#printable { display: none; }
 
-
-
-
-
-
-
-
-
-
-
+@media print{
+  section {page-break-after: always;}
+  #non-printable { display: none; }
+  #printable { display: block; }
+   div{
+        page-break-inside: avoid;
+    }
+  .b{ font-weight: bold; font-style: normal; }
+  .i{ font-weight: normal; font-style: italic; }
+  .bi{ font-weight: bold; font-style: italic; }
+}
 
 
 .navbar-default {

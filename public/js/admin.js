@@ -1,6 +1,7 @@
 $('document').ready(function(){
 
 	var moreDetailID;
+	var statusID;
 	var state2 = false;
 	var isComplete = false;
 
@@ -8,6 +9,11 @@ $('document').ready(function(){
 		$('#loginMessage').text("");
 		$('#username').val("");
 		$('#password').val("");
+	});
+
+
+	$('#printAuthorized').click(function(){
+		window.print();
 	});
 
 	$('#logout').click(function(){
@@ -47,18 +53,68 @@ $('document').ready(function(){
 	});
 
 	$(".changeStatus").click(function(){
-		var id = $(this).attr('id');
-		var dataString = "id="+id;
+		statusID = $(this).attr('id');
+		var dataString = "findType="+statusID;
 		$.ajax({  
 	        type: "POST",  
 	        url: "data_management.php",  
 	        data: dataString,  
 	        success: function(response) { 
-	        	$('.'+id).html(response);
+	        	var res = response.split(" ");
+	        	$('#s_type').val(res[0]);
+	        	$('#amount').val(res[1]);
 	        }  
 	    });
-	    return false; 
+	    event.preventDefault();
+		$('#change-status-modal').modal('show');
 	});
+
+	
+	$('.setNotPassButton').click(function(){
+		if(isNaN(parseInt($('#amount').val()))){
+			$('#erM').text("amount is not valid");
+		}
+		else{
+			var dataString = "notPassID="+statusID+"&type="+$("#s_type").val()+"&amount="+$('#amount').val();
+			$.ajax({  
+		        type: "POST",  
+		        url: "data_management.php",  
+		        data: dataString,  
+		        success: function(response) { 
+		        	$('.'+statusID).html(response);
+		        	$('#change-status-modal').modal('hide');
+		        	location.reload();
+		        }  
+		    });
+		}
+		return false;
+	});
+
+	$('.setPassButton').click(function(){
+		if(isNaN(parseInt($('#amount').val()))){
+			$('#erM').text("amount is not valid");
+		}
+		else{
+			var dataString = "passID="+statusID+"&type="+$("#s_type").val()+"&amount="+$('#amount').val();
+			$.ajax({  
+		        type: "POST",  
+		        url: "data_management.php",  
+		        data: dataString,  
+		        success: function(response) { 
+		        	$('.'+statusID).html(response);
+		        	$('#change-status-modal').modal('hide');
+		        	location.reload();
+		        }  
+		    });
+		}
+		return false;
+		
+	});
+
+
+	
+
+
 
 	$('.moreDetail').click(function(){
 		isComplete = false;

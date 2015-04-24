@@ -1,10 +1,10 @@
 <?php
 	require "../public/db/dbConnect.php";
 	extract($_POST);
-
-	// if(!isset($_SESSION["logged_in"])){
-	// 	header("Location: ".url()."/scholarship/admin/");
-	// }
+	session_start();
+	if(!isset($_SESSION["logged_in"])){
+		header("Location: ".url()."/scholarship/admin/");
+	}
 
 	if(isset($resetPasswordID)){
 		$studentID = $database->select("registration", "studentID", [
@@ -56,24 +56,33 @@
 		echo 'this student is complete';
 	}
 
-	else if(isset($id)){
-		$status = $database->select("registration", "status", [
-			"id" => $id
+	else if(isset($passID)){
+		$database->update("registration", [
+				"status" => "1",
+				"scholarship_t" => $type,
+				"amount" => $amount],[
+				"id" => $passID
 		]);
-		if($status[0]=="0"){
-			$database->update("registration", [
-				"status" => "1"],[
-				"id" => $id
-			]);
-			echo "<button type='button' class='btn btn-success changeStatus' id='$id'>&nbsp;&nbsp;&nbsp;pass&nbsp;&nbsp;&nbsp;</button>";
-		}
-		else{
-			$database->update("registration", [
-				"status" => "0"],[
-				"id" => $id
-			]);
-			echo "<button type='button' class='btn btn-danger changeStatus' id='$id'>not pass</button>";
-		}
+		echo "<button type='button' class='btn btn-success change-status' id='".$passID."'>&nbsp;&nbsp;&nbsp;pass&nbsp;&nbsp;&nbsp;</button>";
+	}
+
+	else if(isset($notPassID)){
+		$database->update("registration", [
+				"status" => "0",
+				"scholarship_t" => $type,
+				"amount" => $amount],[
+				"id" => $notPassID
+		]);
+		echo "<button type='button' class='btn btn-danger change-status' id='".$notPassID."'>not pass</button>";
+	}
+
+
+	else if(isset($findType)){
+		$datas = $database->select("registration", "*", [
+									"id" => $findType]);
+		foreach($datas as $data){
+			echo $data['scholarship_t']." ".$data['amount'];
+		}	
 	}
 
 	else if(isset($moreDetailID)){
@@ -89,7 +98,6 @@
 			echo "Departmet: ".$data['department']."</br>\n";
 		}	
 	}
-
 
 
 

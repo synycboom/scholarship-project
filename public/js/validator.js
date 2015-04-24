@@ -232,6 +232,7 @@
     }
     else{
       e.preventDefault();
+      var title = $('#title').val();
       var firstname = $('#firstname').val();
       var lastname = $('#lastname').val();
       var department = $('select[name=department]').val();
@@ -239,6 +240,7 @@
       var year = $('select[name=year]').val();
       var GPA = $('#GPA').val();
       //insert data to modal body
+      $('#titleCheck').html("คำนำหน้า: "+title);
       $('#firstnameCheck').html("ชื่อ: "+firstname);
       $('#lastnameCheck').html("นามสกุล: "+lastname);
       $('#departmentCheck').html("ภาควิชา: "+department);

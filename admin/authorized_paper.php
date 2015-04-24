@@ -1,16 +1,19 @@
 <?php
-	//###########################  this is in index of admin ##################################
-	//###########################  this is in index of admin ##################################
-	//###########################  this is in index of admin ##################################
-	//###########################  this is in index of admin ##################################
-	//###########################  this is in index of admin ##################################
-	//###########################  this is in index of admin ##################################
-	//###########################  this is in index of admin ##################################
-	//###########################  this is in index of admin ##################################
-	//###########################  this is in index of admin ##################################
-	//###########################  this is in index of admin ##################################
 	session_start();
 	require "../public/db/dbConnect.php";
+
+	$academicYear = $database->select("registration","academicYear",[
+				"studentID" => $_SESSION["student_logged_in"],
+				"ORDER" => "academicYear DESC"
+
+	]);
+
+	$datas = $database->select("registration", "*",[
+		"AND" => [
+			"academicYear" => $academicYear[0],
+			"status" => "1"
+			]
+		]);
 
 ?>
 <html>
@@ -23,6 +26,8 @@
     <script src="../public/js/admin.js"></script>
 </head>
 <body>
+	<!-- start point of non-printable -->
+	<div class="container" id="non-printable">
 	<nav class="navbar navbar-default navbar-fixed-top">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
@@ -47,7 +52,7 @@
 	        	</a>
 	        </li>
 	         <li style="font-family: 'Lobster', cursive; font-size:20px;">
-	         	<a href="#">Administrator<span class="sr-only">(current)</span>
+	         	<a href="../admin/">Administrator<span class="sr-only">(current)</span>
 	         	</a>
 	         </li>
 	        
@@ -55,11 +60,11 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="registered_student.php" id="registeredStudent">Registered Students</a></li>
-	            <li class="divider"></li>
-	            <li><a href="authorized_student.php" id="authorizedStudent">Authorized Students</a></li>
-	            <li class="divider"></li>
-	            	<li><a href="authorized_paper.php" >Print Authorized Students</a></li>
+		            <li><a href="registered_student.php" id="registeredStudent">Registered Students</a></li>
+		            <li class="divider"></li>
+		            <li><a href="authorized_student.php" id="authorizedStudent">Authorized Students</a></li>
+		            <li class="divider"></li>
+	            	<li><a href="#" >Print Authorized Students</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -73,6 +78,7 @@
 		        	<button class="btn btn-danger" id="logout">Logout</button>
 		        </div>
 	      	</form>
+
 
 	      <?php } else { ?>
 	      	<div class="navbar-form navbar-right">
@@ -123,13 +129,7 @@
 		</div>
 
 		<?php if(isset($_SESSION['logged_in'])){ ?>
-		<div class="container ">
-			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		<h1>Welcome Administrator</h1>
-		  	    <h4>To see registered students. Please click Manage-> Registered Students</h4>
-		  	    <h4>To see students that is authorized. Please click Manage-> Authorized Students</h4>
-			</div>
-		</div>
+
 		<?php } else { ?>
 		<div class="container ">
 			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
@@ -140,12 +140,89 @@
 		<?php } ?>
 
 		
+		<?php if(isset($_SESSION['logged_in'])){ ?>
+			<!-- this is a part of non printable -->
+				<div class="container" id="welcome">
+					<div class="jumbotron" style="text-align:center;margin-top:15em">	  
+			  	    	<h1 class="b">Print all authorized students in this academic year</h1>
+			  	    	<button class="btn btn-primary" id ="printAuthorized">print</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="container" id="printable">
+				<h3 style="text-align:center;margin-top:2em">รายชื่อนักศึกษาที่ได้รับทุนการศึกษาประจำปีการศึกษา <?= $academicYear[0]?></h3>
+				<table border="1px" class='table' style='margin-top:2em;text-align:center;'>
+					<thead>
+					    <tr class='printTR'>
+					    	<th>ลำดับ</th>
+					    	<th>รหัสนักศึกษา</th>
+					    	<th>ชื่อ - นามสกุล</th>
+					    	<th>สาขาวิชา</th>
+					     	<th>ชั้นปี</th>					
+					     	<th>ประเภททุน</th>
+					     	<th>จำนวน</th>
+					  	</tr>
+				</thead>
+				<?php 
+				echo "<tbody>\n";
+				$i = 1;
+				foreach($datas as $data)
+				{
+
+					echo "<tr class='printTR'>\n";
+						echo "<td>\n";
+							echo $i++;
+						echo "</td>\n";
+
+						echo "<td>\n";
+							echo $data["studentID"];
+						echo "</td>\n";
+
+						echo "<td>\n";
+							echo $data["title"]." ".$data["firstname"]." ".$data["lastname"];
+						echo "</td>\n";
+
+						echo "<td>\n";
+							echo $data["department"];
+						echo "</td>\n";
+
+						echo "<td>\n";
+							echo $data["year"];
+						echo "</td>\n";
+
+						echo "<td>\n";
+							echo $data["scholarship_t"];
+						echo "</td>\n";
+
+						echo "<td>\n";
+							echo $data["amount"];
+						echo "</td>\n";
+
+					echo "</tr>\n";
+		    	}
+				echo "</tbody>\n";
+			echo "</table>";
+
+
+		?>
 
 
 
 
+		</div>
 
-		<div class="container" id="table-data"></div>
 
+
+
+<!-- 		redirect to home when admin log out -->
+		<?php } else {
+			header("Location: ".url()."/scholarship/admin/");
+		}?>
+
+
+
+
+		
 </body>
 </html>

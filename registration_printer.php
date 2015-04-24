@@ -2,9 +2,16 @@
 	date_default_timezone_set("Asia/Bangkok");
 	require "public/db/dbConnect.php";
 	extract($_POST);
-	$validFirstname = $validLastname = $validStudentID = $validYear = $validGPA = $validDepartment ="";
+	$validFirstname = $validLastname = $validTitle = $validStudentID = $validYear = $validGPA = $validDepartment ="";
 	$invalid = FALSE;
 	//form validation 
+	if(!empty($title) && (preg_match("/^([ก-๙]){1,}$/", $title) || preg_match("/เ*/", $title) ) ){
+		$validTitle = $title;
+	}
+	else{
+		setcookie("titleErr", "Title is not valid", time() + (86400 * 30), "/"); 
+		$invalid = TRUE;
+	}
 	if(!empty($firstname) && (preg_match("/^([ก-๙]){1,}$/", $firstname) || preg_match("/เ*/", $firstname) ) ){
 		$validFirstname = $firstname;
 	}
@@ -71,6 +78,7 @@
 		//if there is no this data in database,add new record
 		if(empty($datas)){
 			$database->insert("registration", [
+				"title" => "$validTitle",
 				"firstname" => "$validFirstname",
 				"lastname" => "$validLastname",
 				"studentID" => "$validStudentID",
@@ -256,8 +264,8 @@
 				
 			<div class="row">
 				<div class="col-xs-6">
-					<div id="name" style="margin-top:-51.1em; margin-left:14em;">
-			  			<?= $validFirstname ?>
+					<div id="name" style="margin-top:-51.1em; margin-left:13.5em;">
+			  			<?= $validTitle." ".$validFirstname ?>
 			  		</div>
 				</div>
 				<div class="col-xs-6">
