@@ -87,6 +87,7 @@
 				"GPA" => "$validGPA",
 				"academicYear" => "$academicYear",
 				"status" => "0",
+				"scholarship_t" => "n/a",
 				"password" => $hash_password
 			]);
 		}

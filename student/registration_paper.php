@@ -113,8 +113,13 @@
 		
 
 			<div class="container" id="welcome">
-					<div class="jumbotron" style="text-align:center;margin-top:15em">	  
+					<div class="jumbotron" style="text-align:center;margin-top:10em">	  
 			  	    	<h1 class="b">Print registration document</h1>
+			  	    	<h2 style="color:red">Before Printing</h2>
+		  	    		<h3 ><b>Disable header and footer!</b></h3>
+		  	    		<h4>Options -> then disable header and footer</h4>
+		  	    		<h3><b>Select A4 paper size!</b></h3>
+		  	    		<h4>Paper size -> A4 </h4>
 			  	    	<button class="btn btn-primary" id ="printButton">print</button>
 					</div>
 

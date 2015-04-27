@@ -3,7 +3,6 @@
 	require "../public/db/dbConnect.php";
 
 	$academicYear = $database->select("registration","academicYear",[
-				"studentID" => $_SESSION["student_logged_in"],
 				"ORDER" => "academicYear DESC"
 
 	]);
@@ -14,6 +13,14 @@
 			"status" => "1"
 			]
 		]);
+
+	function url(){
+	  return sprintf(
+	    "%s://%s",
+	    isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+	    $_SERVER['SERVER_NAME']
+	  );
+	}
 
 ?>
 <html>
@@ -143,8 +150,13 @@
 		<?php if(isset($_SESSION['logged_in'])){ ?>
 			<!-- this is a part of non printable -->
 				<div class="container" id="welcome">
-					<div class="jumbotron" style="text-align:center;margin-top:15em">	  
+					<div class="jumbotron" style="text-align:center;margin-top:8em">	  
 			  	    	<h1 class="b">Print all authorized students in this academic year</h1>
+			  	    	<h2 style="color:red">Before Printing</h2>
+		  	    		<h3 ><b>Disable header and footer!</b></h3>
+		  	    		<h4>Options -> then disable header and footer</h4>
+		  	    		<h3><b>Select A4 paper size!</b></h3>
+		  	    		<h4>Paper size -> A4 </h4>
 			  	    	<button class="btn btn-primary" id ="printAuthorized">print</button>
 					</div>
 				</div>
