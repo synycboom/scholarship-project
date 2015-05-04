@@ -66,7 +66,7 @@
 				]) ){
 					//if user has a correct password
 					if (hash_equals($pass[0], crypt($password, $pass[0]))) {
-				    	echo "Password verified :)";
+				    	echo "เข้าสู่ระบบสำเร็จ :)";
 						$_SESSION["student_logged_in"] = $studentID;
 						$name = $database->select("registration", "firstname", [
 							"studentID" => $studentID
@@ -75,24 +75,24 @@
 					}
 					//if user has an incorrect password
 					else{
-						echo "Password is incorrect!!";
+						echo "รหัสผ่านไม่ถูกต้อง!!";
 					}
 				}
 
 				//if user status has not verified
 				else{
-					echo "You have not been authorized yet";
+					echo "คุณยังไม่ได้รับอนุมัติทุนการศึกษา";
 				}
 
 			}
 			//user is not in database
 			else{
-				echo "There is no this username";
+				echo "ไม่พบผู้ใช้นี้";
 			}
 		}
 		//invalid input
 		else{
-			echo "Invalid Username or Password";
+			echo "รหัสนักศึกษา หรือ รหัสผ่าน ไม่ถูกต้อง";
 		}
 
 		
@@ -105,20 +105,20 @@
 	//reset password
 	if(isset($currentPassword)&&isset($newPassword)&&isset($reNewPassword)){
 		if(empty($newPassword)||empty($currentPassword)||empty($reNewPassword)){
-			echo "Some inputs are empty";
+			echo "กรุณากรอกข้อมูลให้ครบถ้วน";
 
 		}
 		else if($newPassword!=$reNewPassword){
-			echo "The new password are not the same!";
+			echo "รหัสผ่านใหม่ไม่เหมือนกัน!";
 		}
-		else if(!preg_match("/^([A-Za-z0-9]){8,10}$/", $newPassword)){
-			echo "The password contains some characters that is invalid";
+		else if(!preg_match("/^([A-Za-z0-9])*$/", $newPassword)){
+			echo "รหัสผ่านมีตัวอักษรที่ไม่ได้รับอนุญาติ";
 		}
 		else if(strlen($newPassword)<8 ){
-			echo "The length is less than 8 characters";
+			echo "ความยาวน้อยกว่า 8 ตัวอักษร";
 		}
 		else if(strlen($newPassword)>10 ){
-			echo "The length is grater than 10 characters";
+			echo "ความยาวมากกว่า 10 ตัวอักษร";
 		}
 		
 		else{
@@ -131,10 +131,10 @@
 							"password" => $hash_password],[
 							"studentID" => $_SESSION["student_logged_in"]
 					]);
-					echo "Password is successfully changed";
+					echo "เปลี่ยนรหัสผ่านสำเร็จ";
 				}
 				else{
-					echo "Current password is not valid";
+					echo "รหัสผ่านปัจจุบันไม่ถูกต้อง";
 				}
 			}
 		}

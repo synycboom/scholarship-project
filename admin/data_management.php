@@ -37,7 +37,7 @@
 			
 		]);
 		$d_arr = explode(":",AddTime($details));
-		echo "Total Activity Time: ".$d_arr[0]." hr : ".$d_arr[1]." mn";
+		echo "เวลาทำกิจกรรมทั้งหมด: ".$d_arr[0]." ชั่วโมง : ".$d_arr[1]." นาที";
 	}
 
 	if(isset($setInCompleteID)){
@@ -45,7 +45,7 @@
 				"status" => "1"],[
 				"id" => $setInCompleteID
 		]);
-		echo 'this student is incomplete';
+		echo 'ใช้ทุนยังไม่ครบ';
 	}
 
 	if(isset($setCompleteID)){
@@ -53,7 +53,7 @@
 				"status" => "2"],[
 				"id" => $setCompleteID
 		]);
-		echo 'this student is complete';
+		echo 'ใช้ทุนครบแล้ว';
 	}
 
 	else if(isset($passID)){
@@ -63,7 +63,7 @@
 				"amount" => $amount],[
 				"id" => $passID
 		]);
-		echo "<button type='button' class='btn btn-success change-status' id='".$passID."'>&nbsp;&nbsp;&nbsp;pass&nbsp;&nbsp;&nbsp;</button>";
+		echo "<button type='button' class='btn btn-success change-status' id='".$passID."'>&nbsp;&nbsp;&nbsp;อนุมัติ&nbsp;&nbsp;&nbsp;</button>";
 	}
 
 	else if(isset($notPassID)){
@@ -73,7 +73,7 @@
 				"amount" => $amount],[
 				"id" => $notPassID
 		]);
-		echo "<button type='button' class='btn btn-danger change-status' id='".$notPassID."'>not pass</button>";
+		echo "<button type='button' class='btn btn-danger change-status' id='".$notPassID."'>ไม่อนุมัติ</button>";
 	}
 
 
@@ -89,13 +89,13 @@
 		$datas = $database->select("registration", "*", [
 									"id" => $moreDetailID]);
 		foreach($datas as $data){
-			echo "Student ID: ".$data['studentID']."</br>\n";
-			echo "Name: ".$data['firstname']."\n";
+			echo "รหัสนักศึกษา: ".$data['studentID']."</br>\n";
+			echo "ชื่อ - นามสกุล: ".$data['firstname']."\n";
 			echo $data['lastname']."</br>\n";
-			echo "Year: ".$data['year']."</br>\n";
-			echo "Academic Year: ".$data['academicYear']."</br>\n";
-			echo "GPA: ".$data['GPA']."</br>\n";
-			echo "Departmet: ".$data['department']."</br>\n";
+			echo "ชั้นปี: ".$data['year']."</br>\n";
+			echo "ปีการศึกษา: ".$data['academicYear']."</br>\n";
+			echo "เกรดเฉลี่ย: ".$data['GPA']."</br>\n";
+			echo "ภาควิชา: ".$data['department']."</br>\n";
 		}	
 	}
 

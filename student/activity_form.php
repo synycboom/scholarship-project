@@ -50,15 +50,17 @@
 	        
 	        <?php if(isset($_SESSION['student_logged_in'])){ ?>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการ <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="#" id="view-activity-form">Activity Form</a></li>
-	            <li><a href="view_all_activity.php" id="view-all-activity">View All Activities</a></li>
+	            <li><a href="#" id="view-activity-form">ฟอร์มบันทึกกิจกรรม</a></li>
 	            <li class="divider"></li>
-	            <li><a href="change_password.php" id="changePassword">Change Password</a></li>
+	            <li><a href="view_all_activity.php" id="view-all-activity">กิจกรรมทั้งหมด</a></li>
 	            <li class="divider"></li>
-	            <li><a href="activity_paper.php" >Get Activity Paper</a></li>
-	            <li><a href="registration_paper.php" >Get Register Paper</a></li>
+	            <li><a href="change_password.php" id="changePassword">เปลี่ยนรหัสผ่าน</a></li>
+	            <li class="divider"></li>
+	            <li><a href="activity_paper.php" >พิมพ์กิจกรรมทั้งหมด</a></li>
+	            <li class="divider"></li>
+	            <li><a href="registration_paper.php" >พิมพ์ใบสมัคร</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>

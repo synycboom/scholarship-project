@@ -52,15 +52,17 @@
 	        
 	        <?php if(isset($_SESSION['student_logged_in'])){ ?>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการ <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="activity_form.php" id="view-activity-form">Activity Form</a></li>
-	            <li><a href="view_all_activity.php" id="view-all-activity">View All Activities</a></li>
+	            <li><a href="activity_form.php" id="view-activity-form">ฟอร์มบันทึกกิจกรรม</a></li>
+	             <li class="divider"></li>
+	            <li><a href="view_all_activity.php" id="view-all-activity">กิจกรรมทั้งหมด</a></li>
 	            <li class="divider"></li>
-	            <li><a href="change_password.php" id="changePassword">Change Password</a></li>
+	            <li><a href="change_password.php" id="changePassword">เปลี่ยนรหัสผ่าน</a></li>
 	            <li class="divider"></li>
-	            <li><a href="activity_paper.php" >Get Activity Paper</a></li>
-	            <li><a href="registration_paper.php" >Get Register Paper</a></li>
+	            <li><a href="activity_paper.php" >พิมพ์กิจกรรมทั้งหมด</a></li>
+	             <li class="divider"></li>
+	            <li><a href="registration_paper.php" >พิมพ์ใบสมัคร</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -129,17 +131,17 @@
 		<?php if(isset($_SESSION['student_logged_in'])){ ?>
 		<div class="container" id="welcome">
 			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		<?= "<h1>Welcome ".$_SESSION['name']."</h1>"?>
-		  	    <h4>To add new activity information. Please click Manage-> Activity Form</h4>
-		  	    <h4>To manage your account. Please click Manage-> Account Management</h4>
+		  		<?= "<h1>ยินดีต้อนรับ ".$_SESSION['name']."</h1>"?>
+		  	    <h4>เพื่อที่จะเพิ่มข้อมูลกิจกรรม. กรุณากด จัดการ -> ฟอร์มบันทึกกิจกรรม</h4>
+		  	    <h4>เพื่อที่จะตั้งค่าบัญชี. กรุณากด จัดการ -> การจัดการบัญชีผู้ใช้</h4>
 			</div>
 		</div>
 
 		<?php } else { ?>
 		<div class="container ">
 			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		<h1>Activity and Account management</h1>
-		  		<p>Please log in first</p>
+		  		<h1>บันทึกกิจกรรมนักศึกษา</h1>
+		  		<p>กรุณาเข้าสู่ระบบเพื่อใช้งาน</p>
 			</div>
 		</div>
 		<?php } ?>

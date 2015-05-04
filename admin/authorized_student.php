@@ -44,22 +44,21 @@
 	        
 	        <?php if(isset($_SESSION['logged_in'])){ ?>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการ <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
 	          	<?php if($_SESSION['isSearch']){?>
 	          		<li><a href="registered_student.php?clear" id="registeredStudent">
-	          			Registered Students</a></li>
+	          			นักศึกษาทีี่สมัคร</a></li>
 		            <li class="divider"></li>
-		            <li><a href="authorized_student.php?clear" id="authorizedStudent">
+		            <li><a href="authorized_student.php?clear" id="authorizedStudent">นักศึกษาที่อนุมัติ</a></li>
 		            <li class="divider"></li>
-	            	<li><a href="authorized_paper.php" >Print Authorized Students</a></li>
-		            	Authorized Students</a></li>
+	            	<li><a href="authorized_paper.php" >พิมพ์รายชื่อนักศึกษา</a></li>
 	          	<?php } else {?>
-		            <li><a href="registered_student.php" id="registeredStudent">Registered Students</a></li>
+		            <li><a href="registered_student.php" id="registeredStudent">นักศึกษาทีี่สมัคร</a></li>
 		            <li class="divider"></li>
-		            <li><a href="#" id="authorizedStudent">Authorized Students</a></li>
+		            <li><a href="#" id="authorizedStudent">นักศึกษาที่อนุมัติ</a></li>
 		            <li class="divider"></li>
-	            	<li><a href="authorized_paper.php" >Print Authorized Students</a></li>
+	            	<li><a href="authorized_paper.php" >พิมพ์รายชื่อนักศึกษา</a></li>
 	            <?php } ?>
 	          </ul>
 	        </li>
@@ -78,18 +77,18 @@
 	        <form class="navbar-form navbar-right" role="search"method="post" 
 	        	action="authorized_student.php" >
 	          <div class="form-group">
-	            <input type="text" style="text-align:center;"class="form-control" placeholder="Search" name="searchValue">
+	            <input type="text" style="text-align:center;"class="form-control" placeholder="ค้นหา" name="searchValue">
 	          </div>
 
 	          <div class="form-group">
 	          	<select name="searchType"  style="text-align:center;" id="department"  class="form-control">
-					<option value="studentID" selected>Student ID</option>
-					<option value="firstname">First name</option>
-					<option value="lastname">Last name</option>
-					<option value="department">Department</option>
-					<option value="year">Year</option>
-					<option value="GPA">GPA</option>
-					<option value="academicYear">Academic Year</option>
+					<option value="studentID" selected>รหัสนักศึกษา</option>
+					<option value="firstname">ชื่อ</option>
+					<option value="lastname">นามสกุล</option>
+					<option value="department">ภาควิชา</option>
+					<option value="year">ชั้นปี</option>
+					<option value="GPA">เกรดเฉลี่ย</option>
+					<option value="academicYear">ปีการศึกษา</option>
 				</select>
 	          </div>
 	          <button type="submit" class="btn btn-default">Submit</button>
@@ -147,8 +146,8 @@
 		<?php } else { ?>
 		<div class="container ">
 			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		<h1>Welcome :)</h1>
-		  		<p>Please log in to be an administrator</p>
+		  		<h1>ยินดีต้อนรับ :)</h1>
+		  		<p>กรุณา log in เพื่อเข้าใช้</p>
 			</div>
 		</div>
 		<?php } ?>
@@ -160,17 +159,17 @@
 			echo "<table class='table table-hover' style='margin-top:6em;text-align:center;'>\n";
 				echo "<thead>\n";
 					echo "<tr>\n";
-						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByStudentID'>Student ID</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByTitle'>Title</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByfirstname'>First Name</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortBylastname'>Last Name</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByDepartment'>Department</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByYear'>Year</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByGPA'>GPA</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByAcademicyear'>Academic Year</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByType'>Type</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByAmount'>Amount</a></th>\n";
-						echo "<th class='info' style='text-align:center'>Detail</th>\n";
+						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByStudentID'>รหัสนักศึกษา</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByTitle'>คำนำหน้า</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByfirstname'>ชื่อ</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortBylastname'>นามสกุล</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByDepartment'>ภาควิชา</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByYear'>ชั้นปี</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByGPA'>เกรดเฉลี่ย</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByAcademicyear'>ปีการศึกษา</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByType'>ประเภททุน</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='authorized_student.php?sortByAmount'>จำนวน</a></th>\n";
+						echo "<th class='info' style='text-align:center'>รายละเอียด</th>\n";
 					echo "</tr>\n";
 
 
@@ -223,9 +222,9 @@
 						
 							echo "<td>\n";
 								if($data['status'] == 1)
-									echo "<button type='button' class='btn btn-default moreDetail' id='".$data["id"]."'>more details</button>";
+									echo "<button type='button' class='btn btn-default moreDetail' id='".$data["id"]."'>รายละเอียด</button>";
 								if($data['status'] == 2)
-									echo "<button type='button' class='btn btn-primary moreDetailVerified' id='".$data["id"]."'>more details</button>";
+									echo "<button type='button' class='btn btn-primary moreDetailVerified' id='".$data["id"]."'>รายละเอียด</button>";
 							echo "</td>\n";
 
 						echo "</tr>\n";
@@ -251,19 +250,19 @@
 			      <div class="modal-header">
 
 			        <button type="button" id = "close-modal"class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			        <h4 class="modal-title">more details</h4>
+			        <h4 class="modal-title">รายละเอียดเพิ่มเติม</h4>
 
 			      </div>
 
 			      <div class="modal-body" id="detail-body-modal">
-			      	<button class="btn btn-primary" id='accountSetting'> account setting</button>
-			      	<button class="btn btn-success" id='activityDetail'> activity details</button>
+			      	<button class="btn btn-primary" id='accountSetting'> ตั้งค่า</button>
+			      	<button class="btn btn-success" id='activityDetail'> ประวัติกิจกรรม</button>
 			      </div>
 
 			      <div class="modal-footer" id="resetPasswordFooter">
-			      	<button class="btn btn-danger resetPasswordButton">Reset Password</button>
-			      	<button class="btn btn-primary setCompleteButton">set complete</button>
-			      	<button class="btn btn-default setInCompleteButton">set incomplete</button>
+			      	<button class="btn btn-danger resetPasswordButton">รีเซ็ทรหัสผ่าน</button>
+			      	<button class="btn btn-primary setCompleteButton">ใช้ทุนครบ</button>
+			      	<button class="btn btn-default setInCompleteButton">ใช้ทุนไม่ครบ</button>
 			      </div>
 
 			    </div>

@@ -43,23 +43,23 @@
 	        
 	        <?php if(isset($_SESSION['logged_in'])){ ?>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการ <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
 	          	<?php if($_SESSION['isSearch']){?>
 	          		<!-- ####################### -->
 	          		<!--   clear search history  -->
 	          		<!-- ####################### -->
-	          	    <li><a href="registered_student.php?clear" id="registeredStudent">Registered Students</a></li>
+	          	    <li><a href="registered_student.php?clear" id="registeredStudent">นักศึกษาทีี่สมัคร</a></li>
 	          		<li class="divider"></li>
-	            	<li><a href="authorized_student.php?clear" id="authorizedStudent">Authorized Students</a></li>
+	            	<li><a href="authorized_student.php?clear" id="authorizedStudent">นักศึกษาที่อนุมัติ</a></li>
 	            	<li class="divider"></li>
-	            	<li><a href="authorized_paper.php" >Print Authorized Students</a></li>
+	            	<li><a href="authorized_paper.php" >พิมพ์รายชื่อนักศึกษา</a></li>
 	          	<?php } else {?>
-		            <li><a href="#" id="registeredStudent">Registered Students</a></li>
+		            <li><a href="#" id="registeredStudent">นักศึกษาทีี่สมัคร</a></li>
 		            <li class="divider"></li>
-		            <li><a href="authorized_student.php" id="authorizedStudent">Authorized Students</a></li>
+		            <li><a href="authorized_student.php" id="authorizedStudent">นักศึกษาที่อนุมัติ</a></li>
 		            <li class="divider"></li>
-	            	<li><a href="authorized_paper.php" >Print Authorized Students</a></li>
+	            	<li><a href="authorized_paper.php" >พิมพ์รายชื่อนักศึกษา</a></li>
 	            <?php } ?>
 	          </ul>
 	        </li>
@@ -78,18 +78,18 @@
 	        <form class="navbar-form navbar-right" role="search" method="post" 
 	          action="registered_student.php" >
 	          <div class="form-group">
-	            <input type="text" style="text-align:center;"class="form-control" placeholder="Search" name="searchValue">
+	            <input type="text" style="text-align:center;"class="form-control" placeholder="ค้นหา" name="searchValue">
 	          </div>
 
 	          <div class="form-group">
 	          	<select name="searchType"  style="text-align:center;" id="department"  class="form-control">
-					<option value="studentID" selected>Student ID</option>
-					<option value="firstname">First name</option>
-					<option value="lastname">Last name</option>
-					<option value="department">Department</option>
-					<option value="year">Year</option>
-					<option value="GPA">GPA</option>
-					<option value="academicYear">Academic Year</option>
+					<option value="studentID" selected>รหัสนักศึกษา</option>
+					<option value="firstname">ชื่อ</option>
+					<option value="lastname">นามสกุล</option>
+					<option value="department">ภาควิชา</option>
+					<option value="year">ชั้นปี</option>
+					<option value="GPA">เกรดเฉลี่ย</option>
+					<option value="academicYear">ปีการศึกษา</option>
 				</select>
 	          </div>
 	          <button type="submit" class="btn btn-default">Submit</button>
@@ -152,7 +152,7 @@
 				      <div class="modal-header">
 
 				        <button type="button" id = "close-modal"class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h4 class="modal-title">authorize student</h4>
+				        <h4 class="modal-title">แก้ไขสิทธิ</h4>
 
 				      </div>
 
@@ -160,12 +160,12 @@
 				      	<form action="" method="post" id="loginForm">
 				      		
 							<div class="form-group">
-							    <label for="s_type">scholarship type</label>
+							    <label for="s_type">ประเภททุน</label>
 							    <input type="text" class="form-control" id="s_type" placeholder="N/A">
 							</div>
 
 							<div class="form-group">
-							  <label for="amount">amount</label>
+							  <label for="amount">จำนวน</label>
 							    <input type="number" class="form-control"  placeholder="N/A" id="amount">
 							</div>
 							<p id ="erM"></p>
@@ -173,8 +173,8 @@
 				      </div>
 
 				      <div class="modal-footer" id="setPassButton">
-				      	<button class="btn btn-danger setNotPassButton" style="float:left">not pass</button>
-				      	<button class="btn btn-success setPassButton">pass</button>
+				      	<button class="btn btn-danger setNotPassButton" style="float:left">ไม่อนุมัติ</button>
+				      	<button class="btn btn-success setPassButton">อนุมัติ</button>
 				      </div>
 
 				    </div>
@@ -185,8 +185,8 @@
 		<?php } else { ?>
 		<div class="container ">
 			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		<h1>Welcome :)</h1>
-		  		<p>Please log in to be an administrator</p>
+		  		<h1>ยินดีต้อนรับ :)</h1>
+		  		<p>กรุณา log in เพื่อเข้าใช้</p>
 			</div>
 		</div>
 		<?php } ?>
@@ -198,17 +198,17 @@
 						echo "<table class='table table-hover' style='margin-top:6em;text-align:center;'>\n";
 				echo "<thead>\n";
 					echo "<tr>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByStudentID'>Student ID</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByfirstname'>First Name</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByTitle'>Title</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortBylastname'>Last Name</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByDepartment'>Department</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByYear'>Year</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByGPA'>GPA</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByAcademicyear'>Academic Year</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByType'>Type</a></th>\n";
-						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByAmount'>Amount</a></th>\n";
-						echo "<th class='info' style='text-align:center'>Status</th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByStudentID'>รหัสนักศึกษา</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByfirstname'>คำนำหน้า</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByTitle'>ชื่อ</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortBylastname'>นามสกุล</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByDepartment'>ภาควิชา</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByYear'>ชั้นปี</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByGPA'>เกรดเฉลี่ย</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByAcademicyear'>ปีการศึกษา</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByType'>ประเภททุน</a></th>\n";
+						echo "<th class='info' style='text-align:center'><a href='registered_student.php?sortByAmount'>จำนวน</a></th>\n";
+						echo "<th class='info' style='text-align:center'>สถานะ</th>\n";
 
 					echo "</tr>\n";
 
@@ -262,11 +262,11 @@
 
 						echo "<td class=".$data["id"].">\n";
 							if($data["status"] == 0)
-								echo "<button type='button' class='btn btn-danger changeStatus' id='".$data["id"]."'>not pass</button>";
+								echo "<button type='button' class='btn btn-danger changeStatus' id='".$data["id"]."'>ไม่อนุมัติ</button>";
 							else if($data["status"] == 1)
-								echo "<button type='button' class='btn btn-success changeStatus' id='".$data["id"]."'>&nbsp;&nbsp;&nbsp;pass&nbsp;&nbsp;&nbsp;</button>";
+								echo "<button type='button' class='btn btn-success changeStatus' id='".$data["id"]."'>&nbsp;&nbsp;&nbsp;อนุมัติ&nbsp;&nbsp;&nbsp;</button>";
 							else
-								echo "<button type='button' class='btn btn-primary'>Verified</button>";
+								echo "<button type='button' class='btn btn-primary'>ใช้ทุนครบ</button>";
 						echo "</td>\n";
 
 					echo "</tr>\n";

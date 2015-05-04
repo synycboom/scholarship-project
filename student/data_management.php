@@ -31,7 +31,7 @@
 			}
 			else{
 				if($time_arr[0] == date("Y")){
-					$date = (date("Y")+543)."/".$time_arr[1]."/".$time_arr[1];
+					$date = (date("Y")+543)."/".$time_arr[1]."/".$time_arr[2];
 				}
 			}
 		}
@@ -61,7 +61,7 @@
 				]
 			]);
 			//student can insert upto 26 because the paper has a length limit to 26 row
-			if($count<26){
+			// if($count<26){
 				$database->insert("activity", [
 					"studentID" => $_SESSION["student_logged_in"],
 					"date" => $date,
@@ -71,10 +71,10 @@
 					"academicYear" => $academicYear[0]
 				]);
 				echo "ok";
-			}
-			else{
-				echo "Can't add new data. Your activity is full";
-			}
+			// }
+			// else{
+			// 	echo "Can't add new data. Your activity is full";
+			// }
 
 
 		}

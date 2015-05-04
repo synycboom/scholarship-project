@@ -11,7 +11,8 @@
 		"AND" => [
 			"academicYear" => $academicYear[0],
 			"status" => "1"
-			]
+			] ,
+		"ORDER" => ['studentID', 'department' ,'firstname','lastname']
 		]);
 
 	function url(){
@@ -65,13 +66,13 @@
 	        
 	        <?php if(isset($_SESSION['logged_in'])){ ?>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการ <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-		            <li><a href="registered_student.php" id="registeredStudent">Registered Students</a></li>
+		            <li><a href="registered_student.php" id="registeredStudent">นักศึกษาทีี่สมัคร</a></li>
 		            <li class="divider"></li>
-		            <li><a href="authorized_student.php" id="authorizedStudent">Authorized Students</a></li>
+		            <li><a href="authorized_student.php" id="authorizedStudent">นักศึกษาที่อนุมัติ</a></li>
 		            <li class="divider"></li>
-	            	<li><a href="#" >Print Authorized Students</a></li>
+	            	<li><a href="#" >พิมพ์รายชื่อนักศึกษา</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -140,8 +141,8 @@
 		<?php } else { ?>
 		<div class="container ">
 			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		<h1>Welcome :)</h1>
-		  		<p>Please log in to be an administrator</p>
+		  		<h1>ยินดีต้อนรับ :)</h1>
+		  		<p>กรุณา log in เพื่อเข้าใช้</p>
 			</div>
 		</div>
 		<?php } ?>
@@ -150,13 +151,14 @@
 		<?php if(isset($_SESSION['logged_in'])){ ?>
 			<!-- this is a part of non printable -->
 				<div class="container" id="welcome">
-					<div class="jumbotron" style="text-align:center;margin-top:8em">	  
-			  	    	<h1 class="b">Print all authorized students in this academic year</h1>
-			  	    	<h2 style="color:red">Before Printing</h2>
-		  	    		<h3 ><b>Disable header and footer!</b></h3>
-		  	    		<h4>Options -> then disable header and footer</h4>
-		  	    		<h3><b>Select A4 paper size!</b></h3>
-		  	    		<h4>Paper size -> A4 </h4>
+					<div class="jumbotron" style="text-align:center;margin-top:7em">	  
+			  	    	<h1 class="b">พิมพ์รายชื่อนักศึกษาที่ได้รับทุนการศึกษา</h1>
+			  	    	<h2 style="color:red">ก่อนพิมพ์</h2>
+			  	    	<h4 style="color:red">รองรับเฉพาะ google chrome เท่านั้น **</h4>
+		  	    		<h3 ><b>กรุณายกเลิกการพิมพ์หัวกระดาษและท้ายกระดาษ</b></h3>
+		  	    		<h4>เลือก Options -> ติ๊ก header and footer ออก</h4>
+		  	    		<h3><b>เลือกขนาดกระดาษเป็น A4</b></h3>
+		  	    		<h4>ที่ Paper size -> เลือก A4 </h4>
 			  	    	<button class="btn btn-primary" id ="printAuthorized">print</button>
 					</div>
 				</div>

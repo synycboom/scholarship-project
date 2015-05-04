@@ -76,15 +76,17 @@
 			        
 			        <?php if(isset($_SESSION['student_logged_in'])){ ?>
 			        <li class="dropdown">
-			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการ <span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
-			            <li><a href="activity_form.php" id="view-activity-form">Activity Form</a></li>
-			            <li><a href="view_all_activity.php" id="view-all-activity">View All Activities</a></li>
+			            <li><a href="activity_form.php" id="view-activity-form">ฟอร์มบันทึกกิจกรรม</a></li>
 			            <li class="divider"></li>
-			            <li><a href="change_password.php" id="changePassword">Change Password</a></li>
+			            <li><a href="view_all_activity.php" id="view-all-activity">กิจกรรมทั้งหมด</a></li>
 			            <li class="divider"></li>
-			            <li><a href="activity_paper.php" id="changePassword">Get Activity Paper</a></li>
-			            <li><a href="#" id="changePassword">Get Register Paper</a></li>
+			            <li><a href="change_password.php" id="changePassword">เปลี่ยนรหัสผ่าน</a></li>
+			            <li class="divider"></li>
+			            <li><a href="activity_paper.php" id="changePassword">พิมพ์กิจกรรมทั้งหมด</a></li>
+			            <li class="divider"></li>
+			            <li><a href="#" id="changePassword">พิมพ์ใบสมัคร</a></li>
 			          </ul>
 			        </li>
 			        <?php } ?>
@@ -114,12 +116,13 @@
 
 			<div class="container" id="welcome">
 					<div class="jumbotron" style="text-align:center;margin-top:10em">	  
-			  	    	<h1 class="b">Print registration document</h1>
-			  	    	<h2 style="color:red">Before Printing</h2>
-		  	    		<h3 ><b>Disable header and footer!</b></h3>
-		  	    		<h4>Options -> then disable header and footer</h4>
-		  	    		<h3><b>Select A4 paper size!</b></h3>
-		  	    		<h4>Paper size -> A4 </h4>
+			  	    	<h1 class="b">พิมพ์ใบสมัคร</h1>
+			  	    	<h2 style="color:red">ก่อนพิมพ์</h2>
+			  	    	<h4 style="color:red">รองรับเฉพาะ google chrome เท่านั้น **</h4>
+		  	    		<h3 ><b>กรุณายกเลิกการพิมพ์หัวกระดาษและท้ายกระดาษ</b></h3>
+		  	    		<h4>เลือก Options -> ติ๊ก header and footer ออก</h4>
+		  	    		<h3><b>เลือกขนาดกระดาษเป็น A4</b></h3>
+		  	    		<h4>ที่ Paper size -> เลือก A4 </h4>
 			  	    	<button class="btn btn-primary" id ="printButton">print</button>
 					</div>
 

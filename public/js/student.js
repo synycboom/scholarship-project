@@ -33,7 +33,7 @@ $('document').ready(function(){
 	        data: dataString,  
 	        success: function(response) { 
 	        	 
-	            if(response == "Password verified :)"){ 
+	            if(response == "เข้าสู่ระบบสำเร็จ :)"){ 
 		          $('#loginMessage').text(response);
 		          location.reload();
 		        }          		
@@ -65,13 +65,13 @@ $('document').ready(function(){
    		var date = Date.parse(td) || 0;	
    		
    		if(startTime>=endTime && date == 0){
-   			$('#validation-error-M').text('End time is less than or equal start time. Invalid date!!');
+   			$('#validation-error-M').text('เวลาเริ่มต้นมากกว่าเวลาสิ้นสุดกิจกรรม. วันที่ไม่ถูกต้อง!!');
    		}
    		else if(date == 0){
-   			$('#validation-error-M').text('Invalid date');
+   			$('#validation-error-M').text('วันที่ไม่ถูกต้อง');
    		}
    		else if(startTime>=endTime){
-   			$('#validation-error-M').text('End time is less than or equal start time');
+   			$('#validation-error-M').text('เวลาเริ่มต้นมากกว่าเวลาสิ้นสุดกิจกรรม');
    		}
    		else{
    			$.ajax({  
@@ -80,7 +80,7 @@ $('document').ready(function(){
 		        data: dataString,  
 		        success: function(response) { 
 		        	if(response == "ok"){
-		        		$('#validation-error-M').text('added successfully');
+		        		$('#validation-error-M').text('บันทึกเวลาสำเร็จ');
 		        		setTimeout(function() {
 		        			location.reload();
 							}, 1200);
@@ -117,7 +117,7 @@ $('document').ready(function(){
 		        url: "authentication.php",  
 		        data: dataString,  
 		        success: function(response) { 
-		        	if(response != "Password is successfully changed"){
+		        	if(response != "เปลี่ยนรหัสผ่านสำเร็จ"){
 		        		$('#validation-error').show();
 		        		$('#validation-error').text(response);
 		        	}

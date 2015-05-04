@@ -75,15 +75,17 @@
 	        
 	        <?php if(isset($_SESSION['student_logged_in'])){ ?>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการ <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="activity_form.php" id="view-activity-form">Activity Form</a></li>
-	            <li><a href="#" id="view-all-activity">View All Activities</a></li>
+	            <li><a href="activity_form.php" id="view-activity-form">ฟอร์มบันทึกกิจกรรม</a></li>
 	            <li class="divider"></li>
-	            <li><a href="change_password.php" id="changePassword">Change Password</a></li>
+	            <li><a href="#" id="view-all-activity">กิจกรรมทั้งหมด</a></li>
 	            <li class="divider"></li>
-	            <li><a href="activity_paper.php">Get Activity Paper</a></li>
-	            <li><a href="registration_paper.php">Get Register Paper</a></li>
+	            <li><a href="change_password.php" id="changePassword">เปลี่ยนรหัสผ่าน</a></li>
+	            <li class="divider"></li>
+	            <li><a href="activity_paper.php">พิมพ์กิจกรรมทั้งหมด</a></li>
+	            <li class="divider"></li>
+	            <li><a href="registration_paper.php">พิมพ์ใบสมัคร</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -156,11 +158,11 @@
 				echo "<table class='table table-hover' style='margin-top:6em;text-align:center;'>\n";
 					echo "<thead>\n";
 						echo "<tr>\n";
-							echo "<th class='info' style='text-align:center'>Date</th>\n";
-							echo "<th class='info' style='text-align:center'>Start</th>\n";
-							echo "<th class='info' style='text-align:center'>End</th>\n";
-							echo "<th class='info' style='text-align:center'>Total</th>\n";
-							echo "<th class='danger' style='text-align:center'>Delete</th>\n";
+							echo "<th class='info' style='text-align:center'>วันที่</th>\n";
+							echo "<th class='info' style='text-align:center'>เวลาเริ่มต้น</th>\n";
+							echo "<th class='info' style='text-align:center'>เวลาสิ้นสุด</th>\n";
+							echo "<th class='info' style='text-align:center'>เวลารวม</th>\n";
+							echo "<th class='danger' style='text-align:center'>ลบ</th>\n";
 						echo "</tr>\n";
 
 
@@ -188,9 +190,9 @@
 
 							echo "<td>\n";
 								if((intval($data["academicYear"])-543) == date("Y"))
-									echo "<button type='button' class='btn btn-danger deleteModal' id='".$data["id"]."'>delete</button>";
+									echo "<button type='button' class='btn btn-danger deleteModal' id='".$data["id"]."'>ลบ</button>";
 								else
-									echo "<button type='button' class='btn btn-default' disable >delete</button>";
+									echo "<button type='button' class='btn btn-default' disable >ลบ</button>";
 							echo "</td>\n";
 
 						echo "</tr>\n";
@@ -216,13 +218,13 @@
 		      <div class="modal-header">
 
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		        <h4 class="modal-title">Are you sure to delete</h4>
+		        <h4 class="modal-title">ต้องการลบ?</h4>
 
 		      </div>
 
 		      <div class="modal-body">
-				<button type="button" class="btn btn-primary" data-dismiss="modal" id="cancel"> No </button>
-		        <button type="button" style="float:right"class="btn btn-danger" id="deleteButton">Yes</button>
+				<button type="button" class="btn btn-primary" data-dismiss="modal" id="cancel"> ไม่ </button>
+		        <button type="button" style="float:right"class="btn btn-danger" id="deleteButton">ใช่</button>
 		      </div>
 
 		    </div>

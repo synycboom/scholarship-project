@@ -53,13 +53,13 @@
 	        
 	        <?php if(isset($_SESSION['logged_in'])){ ?>
 	        <li class="dropdown">
-	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage <span class="caret"></span></a>
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">จัดการ <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="registered_student.php" id="registeredStudent">Registered Students</a></li>
+	            <li><a href="registered_student.php" id="registeredStudent">นักศึกษาทีี่สมัคร</a></li>
 	            <li class="divider"></li>
-	            <li><a href="authorized_student.php" id="authorizedStudent">Authorized Students</a></li>
+	            <li><a href="authorized_student.php" id="authorizedStudent">นักศึกษาที่อนุมัติ</a></li>
 	            <li class="divider"></li>
-	            	<li><a href="authorized_paper.php" >Print Authorized Students</a></li>
+	            	<li><a href="authorized_paper.php" >พิมพ์รายชื่อนักศึกษา</a></li>
 	          </ul>
 	        </li>
 	        <?php } ?>
@@ -125,16 +125,16 @@
 		<?php if(isset($_SESSION['logged_in'])){ ?>
 		<div class="container ">
 			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		<h1>Welcome Administrator</h1>
-		  	    <h4>To see registered students. Please click Manage-> Registered Students</h4>
-		  	    <h4>To see students that is authorized. Please click Manage-> Authorized Students</h4>
+		  		<h1>ยินดีต้อนรับ ผู้ดูแลระบบ</h1>
+		  	    <h4>เพื่อที่จะดูนักศึกษาที่สมัคร. กรุณากด จัดการ-> นักศึกษาทีี่สมัคร</h4>
+		  	    <h4>เพื่อที่จะดูนักศึกษาที่ได้รับการอนุมัติ. กรุณากด จัดการ-> นักศึกษาที่อนุมัติ</h4>
 			</div>
 		</div>
 		<?php } else { ?>
 		<div class="container ">
 			<div class="jumbotron" style="text-align:center;margin-top:15em">	  
-		  		<h1>Welcome :)</h1>
-		  		<p>Please log in to be an administrator</p>
+		  		<h1>ยินดีต้อนรับ :)</h1>
+		  		<p>กรุณา log in เพื่อเข้าใช้</p>
 			</div>
 		</div>
 		<?php } ?>
